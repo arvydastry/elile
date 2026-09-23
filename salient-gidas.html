@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salient įgyvendinimo gidas | UAB „Elile“</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Urbanist:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --ink: #0F1B2D; --text: #3E4A5C; --muted: #677185; --line: #E3E7ED; --bg: #F6F7F9;
+      --sun: #F6C445; --sun-50: #FFF8E4; --sun-100: #FCEBB6; --ok: #0E7A3A; --r: 14px;
+      --f-d: "Urbanist", "Plus Jakarta Sans", sans-serif; --f-b: "Plus Jakarta Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; background: #fff; color: var(--text); font: 400 16.5px/1.7 var(--f-b); -webkit-font-smoothing: antialiased; }
+    a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--sun); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    a:hover { text-decoration-thickness: 4px; }
+    :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 40px); }
+
+    .mockbar { background: #0A1220; color: #AEB8C7; font: 500 13px/1.3 var(--f-b); }
+    .mockbar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; min-height: 40px; padding-block: 4px; max-width: 1600px; }
+    .mockbar strong { color: #fff; font-weight: 600; } .mockbar strong span { color: var(--sun); }
+    .mockbar nav { margin-left: auto; display: flex; flex-wrap: wrap; gap: 2px; }
+    .mockbar nav a { color: #AEB8C7; text-decoration: none; padding: 6px 10px; border-radius: 6px; }
+    .mockbar nav a:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .mockbar nav a[aria-current="page"] { color: #fff; background: rgba(255,255,255,.12); }
+
+    .doc-hero { position: relative; overflow: hidden; background: var(--sun-50); border-bottom: 1px solid var(--sun-100); padding: clamp(40px, 6vw, 80px) 0 clamp(44px, 6vw, 84px); }
+    .doc-hero::after { content: ""; position: absolute; width: 420px; aspect-ratio: 1; right: -120px; top: -150px; border-radius: 50%; background: var(--sun); opacity: .6; }
+    .doc-hero .wrap { position: relative; z-index: 1; }
+    .doc-hero img { height: 40px; width: auto; margin-bottom: clamp(26px, 4vw, 40px); }
+    .doc-hero h1 { margin: 0 0 14px; color: var(--ink); font: 600 clamp(38px, 5.4vw, 64px)/1.04 var(--f-d); letter-spacing: -.035em; }
+    .doc-hero p { margin: 0; max-width: 62ch; font-size: clamp(16.5px, 1.5vw, 19px); color: var(--text); }
+    .doc-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .doc-links a { display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: 14.5px; text-decoration: none; }
+    .doc-links a.ghost { background: #fff; color: var(--ink); border: 1.5px solid rgba(15,27,45,.2); }
+    .doc-links a:hover { transform: translateY(-1px); }
+
+    main { padding: clamp(36px, 5vw, 56px) 0 110px; }
+    .toc { columns: 2; column-gap: 40px; margin: 0; padding: 22px 26px; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); }
+    .toc a { display: block; padding: 5px 0; text-decoration: none; break-inside: avoid; }
+    .toc a:hover { text-decoration: underline; text-decoration-color: var(--sun); }
+    .toc a span { display: inline-block; min-width: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    @media (max-width: 640px) { .toc { columns: 1; } }
+
+    section.doc { padding-top: clamp(44px, 5vw, 64px); }
+    h2 { margin: 0 0 18px; padding-top: 26px; border-top: 1px solid var(--line); color: var(--ink); font: 600 clamp(30px, 3.4vw, 42px)/1.15 var(--f-d); letter-spacing: -.025em; }
+    h2 .nr { display: inline-grid; place-items: center; min-width: 1.35em; height: 1.35em; margin-right: 12px; border-radius: 999px; background: var(--sun); font-size: .62em; vertical-align: .18em; letter-spacing: 0; }
+    h3 { margin: 36px 0 12px; color: var(--ink); font: 600 clamp(19px, 1.8vw, 22px)/1.3 var(--f-b); letter-spacing: -.015em; }
+    p { margin: 0 0 14px; max-width: 76ch; }
+    ol, ul { margin: 0 0 16px; padding-left: 22px; }
+    li { margin-bottom: 7px; max-width: 74ch; }
+    b, strong { color: var(--ink); font-weight: 600; }
+
+    .table-wrap { overflow-x: auto; margin: 14px 0 24px; border: 1px solid var(--line); border-radius: var(--r); }
+    table { width: 100%; min-width: 660px; border-collapse: collapse; background: #fff; font-size: 15px; line-height: 1.55; }
+    .table-wrap--wide table { min-width: 880px; }
+    th { background: var(--bg); color: var(--ink); font-weight: 600; text-align: left; white-space: nowrap; }
+    th, td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr:last-child td { border-bottom: 0; }
+    td:first-child { color: var(--ink); font-weight: 600; }
+    code { padding: 1px 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink); font: 400 .84em/1.5 var(--mono); overflow-wrap: anywhere; }
+    .sw { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 6px; border: 1px solid rgba(0,0,0,.12); }
+
+    .code { position: relative; margin: 12px 0 26px; }
+    .code::before { content: attr(data-lang); position: absolute; top: 11px; left: 16px; color: #93A1B5; font: 500 11.5px/1 var(--mono); letter-spacing: .04em; }
+    .code pre { margin: 0; padding: 38px 20px 18px; max-height: 560px; overflow: auto; border-radius: var(--r); background: #0F1B2D; color: #DCE3EC; font: 400 13.5px/1.65 var(--mono); tab-size: 2; }
+    .code pre code { padding: 0; border: 0; background: none; color: inherit; font: inherit; }
+    .copy { position: absolute; top: 8px; right: 8px; padding: 7px 11px; border: 1px solid rgba(255,255,255,.22); border-radius: 6px; background: rgba(255,255,255,.08); color: #fff; font: 600 12.5px/1 var(--f-b); cursor: pointer; }
+    .copy:hover { background: rgba(255,255,255,.16); }
+
+    .note { margin: 16px 0 22px; padding: 14px 18px; border: 1px solid var(--sun-100); border-left: 4px solid var(--sun); border-radius: 10px; background: var(--sun-50); max-width: 80ch; }
+    .note p:last-child { margin: 0; }
+    .ok-note { border-color: #CBE9D6; border-left-color: #16A34A; background: #EFF9F2; }
+    .steps-list { counter-reset: s; list-style: none; padding: 0; }
+    .steps-list > li { counter-increment: s; position: relative; padding-left: 46px; margin-bottom: 14px; }
+    .steps-list > li::before { content: counter(s); position: absolute; left: 0; top: -1px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--sun); font: 700 14px/1 var(--f-b); }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 16px 0 24px; }
+    .card { padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--r); background: #fff; }
+    .card h4 { margin: 0 0 10px; color: var(--ink); font: 600 18px/1.3 var(--f-b); }
+    .card ol, .card ul { margin-bottom: 0; }
+    @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+    .chk { list-style: none; padding: 0; }
+    .chk li { position: relative; padding-left: 30px; }
+    .chk li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 16px; height: 16px; border-radius: 5px; border: 2px solid var(--ink); }
+    .foot { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="mockbar">
+    <div class="wrap">
+      <strong>Elile <span>maketas</span></strong>
+      <nav aria-label="Maketo puslapiai">
+        <a href="index.html">Pradžia</a>
+        <a href="patalpos.html">Laisvos patalpos</a>
+        <a href="objektas.html?id=donelaicio-33">K. Donelaičio g. 33</a>
+        <a href="objektas.html?id=jovaru-2">Jovarų g. 2</a>
+        <a href="patalpa.html?id=donelaicio-33-v-4082">Patalpa</a>
+        <a href="salient-gidas.html" aria-current="page">Salient gidas</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="doc-hero">
+    <div class="wrap">
+      <img src="assets/img/elile-logo.svg" alt="elile">
+      <h1>Salient įgyvendinimo gidas</h1>
+      <p>Kaip naują elile.lt maketą perkelti į WordPress su Salient tema: kaip bus įkeliamos ir išimamos laisvos patalpos, temos nustatymai, sekcijų sandara, formos, papildomas kodas ir nuotraukos.</p>
+      <div class="doc-links">
+        <a href="index.html">Maketas: pradžia</a>
+        <a href="patalpos.html">Maketas: laisvos patalpos</a>
+        <a href="patalpa.html?id=donelaicio-33-v-4082">Maketas: patalpa</a>
+        <a class="ghost" href="https://themenectar.com/salient/saas/" target="_blank" rel="noopener">Salient SaaS demo</a>
+        <a class="ghost" href="https://themenectar.com/salient/architect/" target="_blank" rel="noopener">Salient Architect demo</a>
+        <a class="ghost" href="https://www.elile.lt/Nuomojamos-patalpos-KDonelaicio-g-786.html" target="_blank" rel="noopener">Dabartinė svetainė</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="toc" aria-label="Turinys">
+      <a href="#s1"><span>1</span>Koncepcija ir iš ko ji sudaryta</a>
+      <a href="#s2"><span>2</span>Kaip įdėti ir išimti patalpas</a>
+      <a href="#s3"><span>3</span>Pasiruošimas</a>
+      <a href="#s4"><span>4</span>Theme Options</a>
+      <a href="#s5"><span>5</span>Pradžios puslapis</a>
+      <a href="#s6"><span>6</span>Laisvų patalpų puslapis</a>
+      <a href="#s7"><span>7</span>Objekto puslapiai</a>
+      <a href="#s8"><span>8</span>Patalpos puslapis</a>
+      <a href="#s9"><span>9</span>Formos (Contact Form 7)</a>
+      <a href="#s10"><span>10</span>Papildomas kodas</a>
+      <a href="#s11"><span>11</span>Nuotraukos ir video</a>
+      <a href="#s12"><span>12</span>Senų adresų peradresavimas</a>
+      <a href="#s13"><span>13</span>Patikslinti su klientu</a>
+      <a href="#s14"><span>14</span>Prieš paleidžiant</a>
+    </nav>
+
+    <!-- 1 -->
+    <section class="doc" id="s1">
+      <h2><span class="nr">1</span>Koncepcija ir iš ko ji sudaryta</h2>
+      <p>Svetainės tikslas: iš karto parodyti, kokie pastatai yra, kokiu adresu ir kiek juose laisvų patalpų. Todėl laisvų patalpų skaičius matomas meniu, pirmame ekrane, ant objektų kortelių ir žemėlapyje, o kiekviena patalpa turi savo puslapį su nuotraukomis, kaina, vieta žemėlapyje ir apžiūros užklausa.</p>
+      <p>Maketas sujungia du Salient demo. Iš <b>SaaS</b> paimtas šviesus fonas, Plus Jakarta Sans šriftas, apvalūs mygtukai, ranka pabrauktas žodis, animuotos formos, plūduriuojanti kortelė, bėganti eilutė ir DUK. Iš <b>Architect</b> paimtas Urbanist šriftas antraštėms, didelės nuotraukos su paralaksu, sluoksniuotos nuotraukos, tekstas su įterptomis nuotraukomis ir prilipusi kolona šalia įrašų tinklelio. Elektromobilių stotelių veikla į bendrą dizainą neįtraukta: įkrovimo galimybė paminėta tik objekto ir patalpos puslapiuose, kaip papildoma paslauga nuomininkui.</p>
+
+      <div class="table-wrap table-wrap--wide"><table>
+        <thead><tr><th>Makete</th><th>Iš kurio demo</th><th>Salient elementas</th><th>Kur</th></tr></thead>
+        <tbody>
+          <tr><td>Antraščių įvažiavimas eilutėmis</td><td>Abu</td><td>Split Line Heading (Line Reveal By Space)</td><td>Visos H1 ir H2</td></tr>
+          <tr><td>Pabrauktas žodis „verslui“</td><td>SaaS</td><td>Highlighted Text, stilius Scribble, spalva Extra Color 1</td><td>Hero, poraštė</td></tr>
+          <tr><td>Video suapvalintame rėmelyje, atsiveria iš šono</td><td>SaaS</td><td>Video Player (Self Hosted) + Column Animation: Mask Reveal</td><td>Hero</td></tr>
+          <tr><td>Geltonas apskritimas, žiedas, taškas</td><td>SaaS</td><td>Animated Shape (Circle) + Parallax Scroll</td><td>Hero, pranešimų blokas, objekto viršus</td></tr>
+          <tr><td>Kortelė „Naujausia laisva patalpa“</td><td>SaaS</td><td>Post Grid (1 įrašas) su Parallax Scroll</td><td>Hero</td></tr>
+          <tr><td>Sakinys su nuotraukomis tekste</td><td>Architect</td><td>Text With Inline Images</td><td>Objektų įžanga</td></tr>
+          <tr><td>Objektų kortelės su paralaksu</td><td>Architect</td><td>Image With Animation (Parallax, Border Radius 28)</td><td>Pradžia</td></tr>
+          <tr><td>Prilipusi kolona ir patalpų tinklelis</td><td>Architect</td><td>Column: Sticky + Post Grid su filtrais</td><td>Pradžia, laisvos patalpos</td></tr>
+          <tr><td>Žemėlapis su dviem žymekliais</td><td>SaaS ir Architect bendras</td><td>Map (Leaflet / OpenStreetMap)</td><td>Pradžia, objektai, patalpa</td></tr>
+          <tr><td>Dvi susikertančios bėgančios juostos</td><td>SaaS</td><td>Scrolling Text (2 eilutės, pasuktos CSS klase)</td><td>Pradžia</td></tr>
+          <tr><td>Privalumų tinklelis</td><td>SaaS</td><td>Inner Row: kolonos su spalva, nuotrauka, apvalinimu</td><td>Pradžia</td></tr>
+          <tr><td>Kauno juosta su skaičiais</td><td>Architect</td><td>Row Parallax Background + Milestone</td><td>Pradžia</td></tr>
+          <tr><td>DUK</td><td>SaaS</td><td>Toggle Panels, stilius Minimal Shadow</td><td>Pradžia</td></tr>
+          <tr><td>Sluoksniuotos nuotraukos</td><td>Architect</td><td>Cascading Images (Parallax)</td><td>Objekto viršus</td></tr>
+          <tr><td>Skirtukai</td><td>SaaS</td><td>Tabbed Section</td><td>Patalpos puslapis</td></tr>
+          <tr><td>Kontaktai ir apžiūros forma</td><td>-</td><td>Global Section + Contact Form 7</td><td>Visi puslapiai</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Spalvos ir šriftai</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Paskirtis</th><th>Reikšmė</th><th>Kodėl</th></tr></thead>
+        <tbody>
+          <tr><td>Saulės geltona</td><td><span class="sw" style="background:#F6C445"></span><code>#F6C445</code></td><td>Pozityvi, verslui tinkama akcentinė spalva; atliepia geltoną Jovarų g. 2 fasadą. Mygtukai, pabraukimai, formos.</td></tr>
+          <tr><td>Tamsiai mėlyna (tekstas)</td><td><span class="sw" style="background:#0F1B2D"></span><code>#0F1B2D</code></td><td>Antraštės, antriniai mygtukai, žymekliai. Kontrastas su geltona 11:1.</td></tr>
+          <tr><td>Fonas</td><td><span class="sw" style="background:#F6F7F9"></span><code>#F6F7F9</code> ir <code>#FFFFFF</code></td><td>Šviesūs, vienas po kito einantys pilki ir balti blokai.</td></tr>
+          <tr><td>„Laisva“ statusas</td><td><span class="sw" style="background:#16A34A"></span><code>#16A34A</code>, tekstas <code>#0E7A3A</code></td><td>Tik laisvumui žymėti.</td></tr>
+          <tr><td>Antraštės</td><td>Urbanist 600</td><td>Kaip Architect demo. Palaiko lietuviškas raides.</td></tr>
+          <tr><td>Tekstas, meniu, mygtukai</td><td>Plus Jakarta Sans 400/500/600</td><td>Kaip SaaS demo.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="doc" id="s2">
+      <h2><span class="nr">2</span>Kaip įdėti ir išimti patalpas</h2>
+      <p>Kiekviena laisva patalpa yra atskiras <b>Salient Portfolio projektas</b>, o pastatas yra projekto <b>kategorija</b>. Visi sąrašai (pradžios puslapyje, laisvų patalpų puslapyje, objektų puslapiuose, hero kortelė) yra Salient <b>Post Grid</b> elementai, todėl juos atnaujinti rankomis nereikia: paskelbta patalpa atsiranda visur, juodraštis dingsta visur. Makete tai galima išbandyti mygtuku <b>„Patalpų valdymas“</b> viršutinėje juostoje.</p>
+
+      <div class="two">
+        <div class="card">
+          <h4>Atsilaisvino patalpa: įdedame</h4>
+          <ol class="steps-list">
+            <li><b>Projektai → Pridėti naują</b> arba nukopijuokite ankstesnę patalpą (Duplicate Page įskiepis).</li>
+            <li>Pavadinimas, pvz., <code>Biuro patalpos, 40,82 m²</code>.</li>
+            <li><b>Project Categories</b>: pastatas (<code>K. Donelaičio g. 33</code> arba <code>Jovarų g. 2</code>).</li>
+            <li><b>Project Attributes</b>: paskirtis (Biuras, Sandėlis, Paslaugos) ir „Laisva dabar“ arba „Nuo 2026-11-01“.</li>
+            <li><b>Featured Image</b> ir <b>Excerpt</b>: <code>V aukštas, 7,50 €/m² + PVM</code>.</li>
+            <li>Turinys: WPBakery → Templates → <b>„Patalpos šablonas“</b> (8 skyrius), pakeiskite skaičius, tekstą ir nuotraukas.</li>
+            <li><b>Paskelbti.</b> Patalpa atsiranda sąrašuose, skaičiai atsinaujina patys.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h4>Patalpa išnuomota: išimame</h4>
+          <ol class="steps-list">
+            <li>Projektų sąraše užveskite ant patalpos → <b>Quick Edit</b>.</li>
+            <li>Būsena (Status): <b>Juodraštis</b> (Draft) → Update.</li>
+            <li>Patalpa dingsta iš visų sąrašų ir skaičių. Įrašas lieka, todėl atsilaisvinus jį užtenka atnaujinti ir vėl paskelbti.</li>
+            <li>Jei lankytojas ateis į išnuomotos patalpos adresą iš Google, jis pamatys 404 puslapį. Jame įdėkite nuorodą į laisvų patalpų sąrašą (makete: <a href="patalpa.html?id=donelaicio-33-v-4082">patalpos puslapis</a>, kai patalpa išjungta valdymo skydelyje).</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3>Kur rodomi sąrašai</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Vieta</th><th>Post Grid nustatymai</th></tr></thead>
+        <tbody>
+          <tr><td>Pradžia, hero kortelė</td><td>Post Type: Portfolio; Posts Per Page 1; Order By: Date DESC; stilius Content Next To Image; papildoma klasė <code>elile-live-card</code></td></tr>
+          <tr><td>Pradžia, „Laisvos patalpos“</td><td>Portfolio; visos kategorijos; 4 įrašai; 2 stulpeliai; Content Under Image; Enable Filter: On (pastatai); Display Excerpt: On</td></tr>
+          <tr><td>Laisvų patalpų puslapis</td><td>Portfolio; visi įrašai (-1); 2 stulpeliai arba sąrašas; Enable Filter: On</td></tr>
+          <tr><td>Objekto puslapis</td><td>Portfolio; kategorija = tas pastatas; 3 stulpeliai</td></tr>
+          <tr><td>Patalpos puslapis, „Kitos laisvos patalpos“</td><td>Portfolio; 3 įrašai; to paties pastato kategorija</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Skaičiai „5 laisvos patalpos“</h3>
+      <p>Salient neturi elemento, kuris suskaičiuotų įrašus, todėl child temoje pridedamas trumpasis kodas <code>[elile_laisvos]</code> (10.1 skyrius). Jis įrašomas Text Block elementuose ir meniu pavadinime. Kai objekte laisvų patalpų nėra, kodas <code>[elile_tuscia objektas="jovaru-g-2"]</code> parodo pranešimą su prenumeratos nuoroda, kaip makete.</p>
+      <div class="note"><p><b>Skirtumas nuo maketo.</b> Salient Map elemento žymekliai yra statiniai (adresas ir tekstas), todėl skaičiaus pačiame žymeklyje nebus. Skaičius rodomas šalia žemėlapio esančiame objektų sąraše per <code>[elile_laisvos]</code>.</p></div>
+
+      <h3>Filtrai</h3>
+      <p>Makete laisvų patalpų puslapyje yra pastato, paskirties, ploto ir rikiavimo filtrai. Salient Post Grid filtruoja pagal kategoriją, t. y. pagal pastatą. Kol vienu metu laisvų patalpų yra iki maždaug 8, to pakanka. Jei jų bus daugiau, paskirtį ir plotą galima pridėti kaip papildomas kategorijas arba naudoti filtrų įskiepį (Search &amp; Filter, FacetWP).</p>
+      <div class="note ok-note"><p><b>Alternatyva.</b> Jei reikės griežtų laukų (plotas, kaina, aukštas kaip skaičiai), tą patį galima padaryti su CPT UI ir ACF, bet tam reikia atskiro įrašo šablono. Šiam projektui Portfolio pakanka.</p></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="doc" id="s3">
+      <h2><span class="nr">3</span>Pasiruošimas</h2>
+      <ol>
+        <li>Įdiekite Salient temą ir jos įskiepius: <b>Salient Core</b>, <b>Salient WPBakery Page Builder</b>, <b>Salient Portfolio</b>, <b>Salient Demo Importer</b>.</li>
+        <li>Testinėje aplinkoje importuokite <b>SaaS</b> ir <b>Architect</b> demo. Iš jų patogu kopijuoti eilutes (WPBakery → Templates). Veikiančioje svetainėje demo neimportuokite.</li>
+        <li>Įskiepiai: <b>Contact Form 7</b> (formos), <b>Duplicate Page</b> (patalpų kopijavimas), <b>Redirection</b> (seni adresai), <b>Yoast SEO</b> arba <b>Rank Math</b>, slapukų sutikimo įskiepis. Pasirinktinai <b>MailPoet</b> pranešimams apie naujas patalpas.</li>
+        <li>Aktyvuokite <b>Salient Child</b> temą: į jos <code>functions.php</code> įdėsite 10 skyriaus kodą.</li>
+        <li><b>Salient → Portfolio</b>: Custom Slug <code>patalpos</code>. Kategorijos: <code>K. Donelaičio g. 33</code> (slug <code>k-donelaicio-g-33</code>), <code>Jovarų g. 2</code> (slug <code>jovaru-g-2</code>).</li>
+        <li>Puslapiai: Pradžia, <code>/laisvos-patalpos/</code>, <code>/objektai/k-donelaicio-g-33/</code>, <code>/objektai/jovaru-g-2/</code>, <code>/privatumo-politika/</code>.</li>
+      </ol>
+      <div class="note"><p>Nustatymų pavadinimai paimti iš dabartinių Salient versijų. Skirtingose versijose meniu punktai gali šiek tiek skirtis.</p></div>
+    </section>
+
+    <!-- 4 -->
+    <section class="doc" id="s4">
+      <h2><span class="nr">4</span>Theme Options</h2>
+      <h3>4.1 Logotipas</h3>
+      <p>Logotipas makete yra pasiūlymas: du skirtingo aukščio blokai reiškia du pastatus. Jei klientas turi savo logotipą, naudokite jį.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Nustatymas</th><th>Reikšmė</th></tr></thead>
+        <tbody>
+          <tr><td>Header Navigation → Logo</td><td><code>assets/img/elile-logo.svg</code> (vektorinis, tinka ir Retina)</td></tr>
+          <tr><td>Šviesus logotipas</td><td><code>assets/img/elile-logo-sviesus.svg</code> (tamsiam fonui)</td></tr>
+          <tr><td>Logo Height</td><td>34 px, mobiliesiems 30 px</td></tr>
+          <tr><td>Site Icon</td><td><code>assets/img/favicon.svg</code> (eksportuokite 512 × 512 PNG)</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>4.2 Spalvos (General Settings → Accent Colors)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Nustatymas</th><th>Reikšmė</th><th>Kam</th></tr></thead>
+        <tbody>
+          <tr><td>Accent Color</td><td><code>#0F1B2D</code></td><td>Nuorodos, aktyvūs filtrai, antriniai mygtukai (baltas tekstas tinka be papildomo CSS)</td></tr>
+          <tr><td>Extra Color 1</td><td><code>#F6C445</code></td><td>Pagrindiniai mygtukai (teksto spalva <code>#0F1B2D</code>), Highlighted Text, Animated Shape, bėganti juosta</td></tr>
+          <tr><td>Extra Color 2</td><td><code>#FFF8E4</code></td><td>Pranešimų bloko fonas, ikonų fonai</td></tr>
+          <tr><td>Extra Color 3</td><td><code>#16A34A</code></td><td>Tik statusas „Laisva“</td></tr>
+          <tr><td>Overall Background</td><td><code>#F6F7F9</code></td><td>Puslapio fonas; balti blokai dedami eilutės spalva <code>#FFFFFF</code></td></tr>
+          <tr><td>Body Text / Headings</td><td><code>#3E4A5C</code> / <code>#0F1B2D</code></td><td></td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>4.3 Tipografija (Typography)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Elementas</th><th>Šriftas</th><th>Dydis / eilutė / tarpai</th></tr></thead>
+        <tbody>
+          <tr><td>Navigation</td><td>Plus Jakarta Sans 600</td><td>15 / 15 px</td></tr>
+          <tr><td>Body</td><td>Plus Jakarta Sans 400</td><td>17 / 28 px</td></tr>
+          <tr><td>H1</td><td>Urbanist 600</td><td>88 / 90 px, letter-spacing -3 px (mobiliesiems apie 46 px)</td></tr>
+          <tr><td>H2</td><td>Urbanist 600</td><td>62 / 65 px, letter-spacing -1.8 px (mobiliesiems apie 36 px)</td></tr>
+          <tr><td>H3</td><td>Plus Jakarta Sans 600</td><td>24 / 31 px</td></tr>
+          <tr><td>H4 (kortelių plotas, adresai)</td><td>Urbanist 600</td><td>32 / 34 px</td></tr>
+          <tr><td>H6 (mažos antraštės)</td><td>Plus Jakarta Sans 700</td><td>13 px, didžiosios raidės, letter-spacing 1 px</td></tr>
+          <tr><td>Buttons</td><td>Plus Jakarta Sans 600</td><td>16 px</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>4.4 Bendri nustatymai ir antraštė</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Nustatymas</th><th>Reikšmė</th></tr></thead>
+        <tbody>
+          <tr><td>Button Styling</td><td>Rounded (pilnai apvalūs), kaip SaaS demo</td></tr>
+          <tr><td>Column Animation Easing / Duration</td><td>easeOutQuart, 1200 ms</td></tr>
+          <tr><td>Header Format</td><td>Standard: logotipas kairėje, meniu dešinėje</td></tr>
+          <tr><td>Header Resize On Scroll</td><td>On (76 px → 64 px), fonas po slinkimo baltas su šešėliu</td></tr>
+          <tr><td>Header Link Hover Effect</td><td>Animated Underline, spalva Extra Color 1</td></tr>
+          <tr><td>Meniu</td><td>Laisvos patalpos (su skaičiumi), Objektai (išskleidžiamas: du pastatai su nuotrauka ir statusu, Mega Menu arba paprastas), Nuomininkams, DUK, Kontaktai</td></tr>
+          <tr><td>Dešinėje</td><td>Telefono nuoroda su ikona; mygtukas „Užsakyti apžiūrą“ (Menu item style: Button, Extra Color 1)</td></tr>
+          <tr><td>Off Canvas Menu</td><td>Fullscreen Alt; mygtukas apvalus tamsus (kaip Architect); Breakpoint 1080 px</td></tr>
+          <tr><td>Footer</td><td>4 valdiklių stulpeliai: logotipas ir tekstas, Objektai, Nuomininkams, Rekvizitai; Copyright: © 2026 UAB „Elile“. Visos teisės saugomos.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="doc" id="s5">
+      <h2><span class="nr">5</span>Pradžios puslapis</h2>
+      <p>Kiekviena sekcija yra atskira WPBakery eilutė (Row). Tekstai tokie patys kaip makete.</p>
+      <div class="table-wrap table-wrap--wide"><table>
+        <thead><tr><th>Sekcija</th><th>Eilutė ir kolonos</th><th>Elementai</th></tr></thead>
+        <tbody>
+          <tr><td>1. Hero</td><td>Padding 3 % / 7 %; Equal Height; Content Middle; kolonos 1/2 + 1/2, Column Margin 90 px</td><td>Kairėje: Text Block su <code>[elile_laisvos]</code> ženkliuku; Highlighted Text H1 „Patalpos jūsų <em>verslui</em> Kaune“ (Scribble); Text Block; Button „Laisvos patalpos“ (Extra Color 1, tamsus tekstas, rodyklė); Raw HTML telefonas. Dešinėje: Animated Shape (apskritimas); Video Player Self Hosted (autoplay, loop, muted, radius 28, Mask Reveal iš dešinės); Post Grid 1 įrašas su Parallax Scroll.</td></tr>
+          <tr><td>2. Objektai</td><td>Fonas #FFFFFF; Padding 7 % / 5 %</td><td>Text With Inline Images (H2, animacija Circle Fade In, 2 nuotraukos, nuorodos į objektus). Inner Row 1/2 + 1/2, antros kolonos Top Margin 9 %: Image With Animation (Parallax, radius 28, Reveal From Bottom), Text Block su <code>[elile_laisvos objektas="..."]</code>, H4 adresas, Text Block, Inner Row 3 × 1/3 su Icon + skaičius. Column Link į objekto puslapį.</td></tr>
+          <tr><td>3. Laisvos patalpos</td><td>Padding 8 %; kolonos 4/12 (Sticky: On) + 8/12</td><td>Kairėje: Split Line Heading H2, Text Block, Button „Visos laisvos patalpos“ (Accent), Text Block su nuoroda į prenumeratą. Dešinėje: Post Grid (2 skyrius) su filtrais pagal pastatą.</td></tr>
+          <tr><td>4. Žemėlapis</td><td>Fonas #FFFFFF; kolonos 4/12 + 8/12 arba 1/1 su perdengta kortele (10.2 CSS <code>elile-map-panel</code>)</td><td>Split Line Heading „Du adresai Kaune“; Text Block. Map: Leaflet, Zoom 13, 2 žymekliai (7 skyriaus koordinatės), žymeklio spalva Extra Color 1. Kortelėje abu objektai: nuotrauka, adresas, <code>[elile_laisvos]</code>, 2 faktai.</td></tr>
+          <tr><td>5. Bėgančios juostos</td><td>2 eilutės, Padding 0, klasės <code>elile-band elile-band--ink</code> ir <code>elile-band elile-band--sun</code></td><td>Scrolling Text: „K. Donelaičio g. 33, Jovarų g. 2, Kaunas“ ir „Biurai, Sandėliai, Automobilių aikštelės, Visos komunikacijos“; greitis lėtas; kryptys priešingos.</td></tr>
+          <tr><td>6. Privalumai</td><td>Padding 8 %; Inner Row: 1/2 + 1/2 (2 × 2)</td><td>H6 „Nuomininkams“, Split Line Heading, Text Block. Kolonos su Border Radius 28 ir Padding 32: nuotrauka su gradientu (tvarka), geltona (komunikacijos), balta su rėmeliu (aikštelės), tamsi (be tarpininkų), nuotrauka (sandėliai).</td></tr>
+          <tr><td>7. Kauno juosta</td><td>Background Image, Parallax Background: On (Medium), Color Overlay #0F1B2D 10 % → 90 %, Padding top 22 %</td><td>Split Line Heading H2 (baltas), Text Block, Inner Row 4 × 1/4: Milestone 90 m, 290 m, 0,5 km; ketvirtoje Text Block <code>[elile_laisvos forma="skaicius"]</code>.</td></tr>
+          <tr><td>8. Kaip išsinuomoti</td><td>Fonas #FFFFFF; Inner Row 4 × 1/4, klasė <code>elile-steps</code> (punktyrinė linija)</td><td>Icon (Border Circle, 68 px), H3, Text Block: Išsirinkite, Apžiūrėkite, Susitarkite, Įsikurkite.</td></tr>
+          <tr><td>9. Pranešimai</td><td>Kolona su fonu Extra Color 2, radius 28, Padding 6 %; 7/12 + 5/12</td><td>Split Line Heading, Text Block, CF7 forma „Pranešimai“ (9 skyrius) arba MailPoet forma. Dešinėje: Image With Animation (Mask Reveal, Circle) ir Raw HTML pranešimo kortelė su Parallax Scroll.</td></tr>
+          <tr><td>10. DUK</td><td>Fonas #FFFFFF; 4/12 (Sticky) + 8/12</td><td>Split Line Heading, Text Block, telefonas. Toggle Panels: Minimal Shadow, pirmas atidarytas, 6 klausimai iš maketo.</td></tr>
+          <tr><td>11. Kontaktai</td><td>Global Section prieš poraštę; 5/12 + 7/12</td><td>H6, Split Line Heading „Užsakykite apžiūrą“, Text Block, 3 kontaktų kortelės (Raw HTML). Dešinėje balta kolona (radius 28, šešėlis): CF7 „Apžiūros užklausa“.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="doc" id="s6">
+      <h2><span class="nr">6</span>Laisvų patalpų puslapis</h2>
+      <p>Adresas <code>/laisvos-patalpos/</code>. Viršuje trumpa eilutė: kelio nuorodos (Yoast <code>[wpseo_breadcrumb]</code>), H1 „Laisvos patalpos“ ir skaičius <code>[elile_laisvos forma="skaicius"]</code> geltoname apskritime, įžanga.</p>
+      <ul>
+        <li><b>Eilutė su dviem kolonomis 7/12 + 5/12.</b> Kairėje Post Grid (visi Portfolio įrašai, filtrai pagal pastatą). Dešinėje Map su abiem žymekliais, kolonai Sticky: On.</li>
+        <li><b>Po sąrašu</b> pranešimų blokas (tas pats kaip pradžioje) ir kontaktų Global Section.</li>
+        <li><b>Telefone</b> žemėlapis rodomas po sąrašu. Makete yra mygtukai „Sąrašas / Žemėlapis“; Salient to neturi, todėl paprasčiausia žemėlapį palikti po sąrašu.</li>
+      </ul>
+    </section>
+
+    <!-- 7 -->
+    <section class="doc" id="s7">
+      <h2><span class="nr">7</span>Objekto puslapiai</h2>
+      <p>Du įprasti WPBakery puslapiai, padaryti iš vieno išsaugoto šablono „Objekto šablonas“. Skiriasi tik tekstai, nuotraukos, kategorija Post Grid elemente ir žemėlapio taškai.</p>
+      <div class="table-wrap table-wrap--wide"><table>
+        <thead><tr><th>Sekcija</th><th>Elementai</th></tr></thead>
+        <tbody>
+          <tr><td>Viršus</td><td>Kelio nuorodos; kolonos 5/12 + 7/12. Kairėje <code>[elile_laisvos objektas="..."]</code>, Split Line Heading H1 (adresas), miestas ir rajonas, Text Block, mygtukai „Laisvos patalpos (N)“ ir „Maršrutas“ (Google Maps nuoroda). Dešinėje Cascading Images: pastato nuotrauka ir antra nuotrauka arba žemėlapio ištrauka; Animated Shape.</td></tr>
+          <tr><td>Faktai</td><td>Inner Row 4 × 1/4, baltos kolonos su rėmeliu: Icon + skaičius + tekstas; ketvirta geltona su laisvų patalpų skaičiumi.</td></tr>
+          <tr><td>Laisvos patalpos</td><td>Split Line Heading, Text Block, Post Grid (kategorija = šis pastatas, 3 stulpeliai), <code>[elile_tuscia objektas="..."]</code> po juo.</td></tr>
+          <tr><td>Apie pastatą</td><td>5/12 (Sticky) su tekstu + 7/12 su komunikacijomis (Fancy Unordered List arba Icon List, 3 stulpeliai) ir galerija (Image Gallery, lightbox).</td></tr>
+          <tr><td>Vieta</td><td>7/12 Map (pastatas ir aplinkinės vietos) + 5/12 sąrašas su atstumais.</td></tr>
+          <tr><td>Elektromobilio įkrovimas</td><td>Balta kolona su nuotrauka ir tekstu, nuoroda į kontaktų formą. Tai vienintelė vieta, kur minima įkrovimo galimybė.</td></tr>
+          <tr><td>Kitas pastatas</td><td>Column Link į kitą objektą: didelė antraštė su rodykle ir nuotrauka.</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Koordinatės ir atstumai (OpenStreetMap)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Vieta</th><th>Platuma, ilguma</th><th>Atstumas tiesia linija</th></tr></thead>
+        <tbody>
+          <tr><td>K. Donelaičio g. 33</td><td><code>54.8985675, 23.9184641</code></td><td></td></tr>
+          <tr><td>Gedimino g. stotelė (autobusai, troleibusai)</td><td><code>54.898723, 23.9198855</code></td><td>90 m</td></tr>
+          <tr><td>Studentų skvero stotelė</td><td><code>54.8989638, 23.9142003</code></td><td>280 m</td></tr>
+          <tr><td>Laisvės alėja</td><td><code>54.8976932, 23.9142237</code></td><td>290 m</td></tr>
+          <tr><td>Vienybės aikštė</td><td><code>54.8997351, 23.9136428</code></td><td>330 m</td></tr>
+          <tr><td>PLC „Akropolis“</td><td><code>54.8914648, 23.9194883</code></td><td>0,8 km</td></tr>
+          <tr><td>Kauno autobusų stotis</td><td><code>54.8895825, 23.9280097</code></td><td>1,2 km</td></tr>
+          <tr><td>Kauno geležinkelio stotis</td><td><code>54.8864985, 23.9315466</code></td><td>1,6 km</td></tr>
+          <tr><td>Jovarų g. 2</td><td><code>54.9103563, 23.8417997</code></td><td></td></tr>
+          <tr><td>Kulautuvos g. stotelė</td><td><code>54.9096223, 23.8420398</code></td><td>80 m</td></tr>
+          <tr><td>Atominio bunkerio muziejaus stotelė</td><td><code>54.9118618, 23.8443072</code></td><td>230 m</td></tr>
+          <tr><td>Raudondvario plentas</td><td><code>54.9125054, 23.8442153</code></td><td>280 m</td></tr>
+          <tr><td>Vakarinis aplinkkelis (A5)</td><td><code>54.9110149, 23.8342765</code></td><td>0,5 km</td></tr>
+          <tr><td>Kauno senamiestis (Rotušės a.)</td><td><code>54.8968586, 23.8858991</code></td><td>3,2 km</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="doc" id="s8">
+      <h2><span class="nr">8</span>Patalpos puslapis (Portfolio projektas)</h2>
+      <p>Portfolio projekto nustatymuose išjunkite antraštės nuotrauką (Project Header), turinį darykite WPBakery ir išsaugokite kaip šabloną „Patalpos šablonas“. Nauja patalpa = šablonas + pakeisti skaičiai.</p>
+      <ol>
+        <li><b>Viršus:</b> kelio nuorodos; žymos (paskirtis, „Laisva dabar“); H1 „Biuro patalpos, 40,82 m²“; adresas su nuoroda į objektą; dešinėje kaina „7,50 €/m² + PVM“ ir mėnesio suma (40,82 × 7,50 ≈ 306 €).</li>
+        <li><b>Nuotraukos:</b> Image Gallery (Masonry, lightbox), klasė <code>elile-gallery</code>: pirma nuotrauka didelė, kitos mažesnės.</li>
+        <li><b>Turinys 8/12:</b> faktų kortelės (plotas, aukštas, paskirtis, WC, parkavimas, įsikelti), aprašymas, Tabbed Section: Komunikacijos / Vieta žemėlapyje / Apie pastatą, elektromobilio įkrovimo kortelė.</li>
+        <li><b>Šoninė kolona 4/12 (Sticky):</b> balta kolona su kaina, CF7 „Apžiūros užklausa“ (laiškas automatiškai gauna patalpos pavadinimą ir nuorodą), vadybininko kortelė su telefonu.</li>
+        <li><b>Telefone:</b> apačioje prilipusi juosta „Skambinti“ ir „Užsakyti apžiūrą“ (10.1 kodas).</li>
+        <li><b>Apačioje:</b> Post Grid „Kitos laisvos patalpos“.</li>
+      </ol>
+    </section>
+
+    <!-- 9 -->
+    <section class="doc" id="s9">
+      <h2><span class="nr">9</span>Formos (Contact Form 7)</h2>
+      <h3>9.1 Apžiūros užklausa</h3>
+      <div class="code" data-lang="CF7 → Form"><button class="copy" type="button">Kopijuoti</button><pre><code>&lt;div class="elile-form-grid"&gt;
+&lt;label class="elile-field"&gt;Vardas ir pavardė [text* vardas autocomplete:name]&lt;/label&gt;
+&lt;label class="elile-field"&gt;Telefonas [tel* telefonas autocomplete:tel]&lt;/label&gt;
+&lt;label class="elile-field"&gt;El. paštas (nebūtina) [email email autocomplete:email]&lt;/label&gt;
+&lt;label class="elile-field"&gt;Pastatas [select objektas "K. Donelaičio g. 33" "Jovarų g. 2" "Dar nežinau"]&lt;/label&gt;
+&lt;fieldset class="elile-field elile-full"&gt;&lt;legend&gt;Reikalingas plotas&lt;/legend&gt;[radio plotas use_label_element "Iki 50 m²" "50-150 m²" "Daugiau nei 150 m²"]&lt;/fieldset&gt;
+&lt;label class="elile-field elile-full"&gt;Žinutė (nebūtina) [textarea zinute placeholder "Kokiai veiklai reikia patalpų, nuo kada norėtumėte įsikelti?"]&lt;/label&gt;
+&lt;div class="elile-full elile-actions"&gt;[submit "Užsakyti apžiūrą"] &lt;p class="elile-consent"&gt;Duomenis naudosime tik atsakydami į užklausą.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      <div class="code" data-lang="CF7 → Mail"><button class="copy" type="button">Kopijuoti</button><pre><code>Kam (To): info@elile.lt
+Tema (Subject): Apžiūros užklausa: [_post_title]
+Laiško tekstas:
+Vardas: [vardas]
+Telefonas: [telefonas]
+El. paštas: [email]
+Pastatas: [objektas]
+Plotas: [plotas]
+Puslapis: [_post_title], [_post_url]
+[zinute]</code></pre></div>
+      <p><code>[_post_title]</code> ir <code>[_post_url]</code> yra CF7 specialios žymos: patalpos puslapyje laiške bus tos patalpos pavadinimas ir nuoroda.</p>
+      <p>Kad CF7 neįterptų papildomų <code>&lt;p&gt;</code> žymų, į <code>wp-config.php</code> įrašykite <code>define( 'WPCF7_AUTOP', false );</code>.</p>
+
+      <h3>9.2 Pranešimai apie atsilaisvinusias patalpas</h3>
+      <div class="code" data-lang="CF7 → Form"><button class="copy" type="button">Kopijuoti</button><pre><code>&lt;div class="elile-notify"&gt;
+&lt;label class="elile-field"&gt;El. paštas [email* email placeholder "jusu@imone.lt"]&lt;/label&gt;
+&lt;label class="elile-field"&gt;Pastatas [select objektas "Abu pastatai" "K. Donelaičio g. 33" "Jovarų g. 2"]&lt;/label&gt;
+[submit "Gauti pranešimus"]
+&lt;/div&gt;</code></pre></div>
+      <p>Paprasčiausia: laiškai ateina vadybininkui ir jis, paskelbęs naują patalpą, išsiunčia trumpą laišką. Jei prenumeratorių daug, naudokite MailPoet sąrašą „Laisvos patalpos“ ir automatinį laišką apie naujus įrašus (patikrinkite, ar jūsų MailPoet versija leidžia pasirinkti Portfolio įrašų tipą).</p>
+
+      <h3>9.3 Pranešimai (Messages)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Situacija</th><th>Tekstas</th></tr></thead>
+        <tbody>
+          <tr><td>Išsiųsta</td><td>Ačiū! Užklausą gavome. Gediminas susisieks su jumis dėl apžiūros laiko.</td></tr>
+          <tr><td>Prenumerata</td><td>Ačiū! Pranešime, kai atsilaisvins patalpos.</td></tr>
+          <tr><td>Klaidos formoje</td><td>Patikrinkite pažymėtus laukus.</td></tr>
+          <tr><td>Privalomas laukas</td><td>Užpildykite šį lauką.</td></tr>
+          <tr><td>Nepavyko išsiųsti</td><td>Nepavyko išsiųsti. Paskambinkite +370 699 92062.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 10 -->
+    <section class="doc" id="s10">
+      <h2><span class="nr">10</span>Papildomas kodas</h2>
+      <h3>10.1 Salient Child tema: functions.php</h3>
+      <p>Trumpieji kodai laisvų patalpų skaičiui ir tuščio sąrašo pranešimui, skaičius meniu pavadinime, prilipusi juosta patalpos puslapyje telefone ir hero video pauzės mygtukas. Portfolio kategorijų taksonomija Salient temoje vadinasi <code>project-type</code>.</p>
+      <div class="code" data-lang="PHP"><button class="copy" type="button">Kopijuoti</button><pre><code>&lt;?php
+// Laisvų patalpų skaičius. [elile_laisvos], [elile_laisvos objektas="jovaru-g-2"], [elile_laisvos forma="skaicius"]
+function elile_laisvu_skaicius( $objektas = '' ) {
+	$args = array(
+		'post_type'      =&gt; 'portfolio',
+		'post_status'    =&gt; 'publish',
+		'posts_per_page' =&gt; -1,
+		'fields'         =&gt; 'ids',
+		'no_found_rows'  =&gt; true,
+	);
+	if ( $objektas ) {
+		$args['tax_query'] = array( array( 'taxonomy' =&gt; 'project-type', 'field' =&gt; 'slug', 'terms' =&gt; $objektas ) );
+	}
+	return count( get_posts( $args ) );
+}
+function elile_laisvu_fraze( $n ) {
+	$n10 = $n % 10; $n100 = $n % 100;
+	if ( 1 === $n10 &amp;&amp; 11 !== $n100 ) { return $n . ' laisva patalpa'; }
+	if ( $n10 &gt;= 2 &amp;&amp; $n10 &lt;= 9 &amp;&amp; ( $n100 &lt; 11 || $n100 &gt; 19 ) ) { return $n . ' laisvos patalpos'; }
+	return $n . ' laisvų patalpų';
+}
+add_shortcode( 'elile_laisvos', function ( $atts ) {
+	$a = shortcode_atts( array( 'objektas' =&gt; '', 'forma' =&gt; 'fraze' ), $atts );
+	$n = elile_laisvu_skaicius( $a['objektas'] );
+	if ( 'skaicius' === $a['forma'] ) { return (string) $n; }
+	if ( 0 === $n ) { return '&lt;span class="elile-status elile-status--off"&gt;Laisvų patalpų nėra&lt;/span&gt;'; }
+	return '&lt;span class="elile-status"&gt;' . esc_html( elile_laisvu_fraze( $n ) ) . '&lt;/span&gt;';
+} );
+
+// Pranešimas, kai pastate laisvų patalpų nėra. [elile_tuscia objektas="jovaru-g-2"]
+add_shortcode( 'elile_tuscia', function ( $atts ) {
+	$a = shortcode_atts( array( 'objektas' =&gt; '' ), $atts );
+	if ( elile_laisvu_skaicius( $a['objektas'] ) &gt; 0 ) { return ''; }
+	return '&lt;div class="elile-empty"&gt;&lt;strong&gt;Šiuo metu laisvų patalpų nėra&lt;/strong&gt;'
+		. '&lt;p&gt;Palikite el. paštą ir pranešime, kai šiame pastate atsilaisvins patalpos.&lt;/p&gt;'
+		. '&lt;a class="nectar-button regular accent-color" href="#pranesimai"&gt;Gauti pranešimus&lt;/a&gt;&lt;/div&gt;';
+} );
+
+// Skaičius meniu pavadinime: „Laisvos patalpos &lt;span class="elile-badge"&gt;[elile_laisvos forma="skaicius"]&lt;/span&gt;“
+add_filter( 'nav_menu_item_title', 'do_shortcode' );
+
+// Phosphor ikonos Raw HTML blokams (kontaktai, faktai, pranešimo kortelė)
+add_action( 'wp_enqueue_scripts', function () {
+	wp_enqueue_style( 'phosphor', 'https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css', array(), '2.1.1' );
+} );
+
+// Patalpos puslapis telefone: prilipusi juosta „Skambinti“ ir „Užsakyti apžiūrą“
+add_action( 'wp_footer', function () {
+	if ( ! is_singular( 'portfolio' ) ) { return; }
+	echo '&lt;div class="elile-mobile-bar"&gt;&lt;a href="tel:+37069992062"&gt;Skambinti&lt;/a&gt;&lt;a class="is-main" href="#apziura"&gt;Užsakyti apžiūrą&lt;/a&gt;&lt;/div&gt;';
+} );
+
+// Hero video pauzės mygtukas (WCAG 2.2.2). Video kolonai pridėkite klasę elile-hero-video.
+add_action( 'wp_footer', function () { ?&gt;
+&lt;script&gt;
+document.querySelectorAll('.elile-hero-video').forEach(function (col) {
+	var video = col.querySelector('video');
+	if (!video) return;
+	var btn = document.createElement('button');
+	btn.type = 'button';
+	btn.className = 'elile-video-toggle';
+	var sync = function () {
+		btn.setAttribute('aria-label', video.paused ? 'Paleisti vaizdo įrašą' : 'Sustabdyti vaizdo įrašą');
+		btn.innerHTML = '&lt;i class="ph ' + (video.paused ? 'ph-play' : 'ph-pause') + '" aria-hidden="true"&gt;&lt;/i&gt;';
+	};
+	btn.addEventListener('click', function () { if (video.paused) { video.play(); } else { video.pause(); } });
+	video.addEventListener('play', sync);
+	video.addEventListener('pause', sync);
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { video.pause(); }
+	col.style.position = 'relative';
+	col.appendChild(btn);
+	sync();
+});
+&lt;/script&gt;
+&lt;?php } );</code></pre></div>
+
+      <h3>10.2 Custom CSS (Theme Options → General Settings → Custom CSS Code)</h3>
+      <div class="code" data-lang="CSS"><button class="copy" type="button">Kopijuoti</button><pre><code>/* ===== Elile: papildomi stiliai ===== */
+:root { --elile-ink: #0F1B2D; --elile-sun: #F6C445; --elile-sun-50: #FFF8E4; --elile-ok: #16A34A; --elile-line: #E3E7ED; }
+
+/* Statusas „N laisvos patalpos“ ir skaičius meniu */
+.elile-status { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 10px; border-radius: 999px; background: #EAF7EF; color: #0E7A3A; font-size: 13px; font-weight: 600; line-height: 1; }
+.elile-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--elile-ok); box-shadow: 0 0 0 3px rgba(22,163,74,.18); }
+.elile-status--off { background: #EEF1F4; color: #677185; }
+.elile-status--off::before { background: #B7C0CC; box-shadow: none; }
+.elile-badge { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--elile-sun); color: var(--elile-ink); font-size: 12px; font-weight: 700; }
+
+/* Geltoni mygtukai su tamsiu tekstu */
+.nectar-button.extra-color-1, .nectar-button.extra-color-1:hover { color: var(--elile-ink) !important; }
+
+/* Post Grid kortelės: apvalinimas, rėmelis, pakilimas užvedus */
+.nectar-post-grid .nectar-post-grid-item { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--elile-line); transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s cubic-bezier(.16,1,.3,1); }
+.nectar-post-grid .nectar-post-grid-item:hover { transform: translateY(-6px); box-shadow: 0 32px 64px -24px rgba(15,27,45,.3); }
+.nectar-post-grid-filters a { border-radius: 999px; }
+
+/* Susikertančios bėgančios juostos */
+.elile-band { position: relative; z-index: 1; }
+.elile-band--ink { transform: rotate(4.5deg); margin-top: 80px; }
+.elile-band--sun { transform: rotate(-5.5deg); margin-top: -80px; margin-bottom: 80px; z-index: 2; }
+
+/* Kaip išsinuomoti: punktyrinė linija tarp žingsnių */
+.elile-steps { position: relative; }
+.elile-steps::before { content: ""; position: absolute; top: 34px; left: 34px; right: 34px; height: 2px; background: repeating-linear-gradient(90deg, #CBD2DC 0 8px, transparent 8px 16px); }
+@media (max-width: 999px) { .elile-steps::before { display: none; } }
+
+/* Tuščio sąrašo pranešimas */
+.elile-empty { padding: 28px; border-radius: 18px; border: 1.5px dashed #C9D1DB; background: rgba(255,255,255,.6); }
+
+/* Žemėlapis: minkštesnės spalvos ir kortelė ant žemėlapio (nebūtina) */
+.nectar-google-map .leaflet-tile-pane, .elile-map .leaflet-tile-pane { filter: saturate(.58) brightness(1.05) contrast(.94); }
+@media (min-width: 1000px) { .elile-map-panel { position: absolute !important; z-index: 500; top: 20px; left: 20px; width: 372px; } }
+
+/* Hero video pauzės mygtukas */
+.elile-video-toggle { position: absolute; right: 16px; bottom: 16px; z-index: 5; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.88); color: var(--elile-ink); font-size: 17px; cursor: pointer; }
+
+/* Patalpos puslapis telefone */
+.elile-mobile-bar { display: none; }
+@media (max-width: 999px) {
+  .elile-mobile-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; display: flex; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.95); border-top: 1px solid var(--elile-line); }
+  .elile-mobile-bar a { flex: 1; display: grid; place-items: center; height: 50px; border-radius: 999px; border: 1.5px solid rgba(15,27,45,.2); color: var(--elile-ink); font-weight: 600; }
+  .elile-mobile-bar a.is-main { background: var(--elile-sun); border-color: var(--elile-sun); }
+  body.single-portfolio { padding-bottom: 76px; }
+}
+
+/* CF7 forma */
+.elile-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.elile-full { grid-column: 1 / -1; }
+.elile-field { display: flex; flex-direction: column; gap: 8px; font-weight: 600; color: var(--elile-ink); }
+.elile-field input, .elile-field select, .elile-field textarea { border-radius: 12px !important; border: 1.5px solid #CDD4DD !important; }
+.elile-field input:focus, .elile-field select:focus, .elile-field textarea:focus { border-color: var(--elile-ink) !important; box-shadow: 0 0 0 4px rgba(246,196,69,.45); }
+.elile-consent { margin: 0; font-size: 13px; color: #677185; font-weight: 400; }
+@media (max-width: 690px) { .elile-form-grid { grid-template-columns: 1fr; } }</code></pre></div>
+      <div class="note"><p>Salient klasių pavadinimai (<code>nectar-post-grid-item</code>, <code>nectar-button</code>) gali skirtis priklausomai nuo versijos. Jei stilius nepritaiko, elementui pridėkite savo klasę (Extra Class Name) ir naudokite ją.</p></div>
+    </section>
+
+    <!-- 11 -->
+    <section class="doc" id="s11">
+      <h2><span class="nr">11</span>Nuotraukos ir video</h2>
+      <p>Makete Pexels failai rodomi tiesiai iš Pexels serverio. WordPress'e juos atsisiųskite ir įkelkite į mediją (nuotraukos iki 2000 px pločio, WebP arba JPG 80 %). Pexels licencija leidžia naudoti nemokamai ir be autoriaus nurodymo.</p>
+      <div class="table-wrap table-wrap--wide"><table>
+        <thead><tr><th>Vieta</th><th>Failas</th><th>Šaltinis</th></tr></thead>
+        <tbody>
+          <tr><td>Hero video</td><td>Šviesus tuščias biuras, 9 s, 1280 × 720, 3,2 MB</td><td><a href="https://www.pexels.com/video/an-empty-office-8347240/" target="_blank" rel="noopener">Pexels 8347240</a></td></tr>
+          <tr><td>Kauno juosta</td><td>Kauno pilis iš paukščio skrydžio</td><td><a href="https://www.pexels.com/photo/drone-shot-of-kaunas-castle-4013242/" target="_blank" rel="noopener">Pexels 4013242</a></td></tr>
+          <tr><td>Privalumai: tvarka</td><td>Kolegos šviesiame biure</td><td><a href="https://www.pexels.com/photo/colleagues-working-in-an-office-7876739/" target="_blank" rel="noopener">Pexels 7876739</a></td></tr>
+          <tr><td>Privalumai: sandėliai</td><td>Sandėlio vidus</td><td><a href="https://www.pexels.com/photo/spacious-industrial-warehouse-interior-with-storage-racks-36122954/" target="_blank" rel="noopener">Pexels 36122954</a></td></tr>
+          <tr><td>Pranešimų blokas</td><td>Raktų perdavimas</td><td><a href="https://www.pexels.com/photo/businessman-and-clients-holding-keys-8815930/" target="_blank" rel="noopener">Pexels 8815930</a></td></tr>
+          <tr><td>Elektromobilio įkrovimas</td><td>Automobilis įkraunamas</td><td><a href="https://www.pexels.com/photo/white-car-charging-3846205/" target="_blank" rel="noopener">Pexels 3846205</a></td></tr>
+          <tr><td>Pavyzdinės patalpos</td><td>Biurai ir sandėlis (tik maketui)</td><td>Pexels 7534173, 7750129, 6794970, 36122954, 37389217</td></tr>
+          <tr><td>Pastatai ir tikra patalpa</td><td><code>assets/img/objektai/</code>, <code>assets/img/patalpos/</code></td><td>Dabartinė elile.lt svetainė</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><p><b>Svarbu.</b> Pastatų nuotraukos elile.lt svetainėje yra tik 890 px pločio, todėl didelėse kortelėse jos atrodys neryškiai. Paprašykite originalų (K. Donelaičio g. 33 nuotrauka daryta dronu, originalas turėtų būti didelis). Jovarų g. 2 reikia vidaus ir sandėlio nuotraukų: pavyzdinės patalpos makete iliustruotos Pexels nuotraukomis ir tikroje svetainėje turi būti pakeistos tikromis.</p></div>
+    </section>
+
+    <!-- 12 -->
+    <section class="doc" id="s12">
+      <h2><span class="nr">12</span>Senų adresų peradresavimas (301)</h2>
+      <p>Seni adresai gali būti Google paieškoje ir skelbimuose, todėl juos peradresuokite su Redirection įskiepiu.</p>
+      <div class="table-wrap table-wrap--wide"><table>
+        <thead><tr><th>Senas adresas</th><th>Naujas adresas</th></tr></thead>
+        <tbody>
+          <tr><td>/Kaunas-Donelaicio-g-33-687.html</td><td>/objektai/k-donelaicio-g-33/</td></tr>
+          <tr><td>/Nuomojamos-patalpos-KDonelaicio-g-786.html</td><td>/objektai/k-donelaicio-g-33/#laisvos</td></tr>
+          <tr><td>/4082-kvm-patalpos-V-a-932.html</td><td>/patalpos/biuro-patalpos-40-82-m2/</td></tr>
+          <tr><td>/Kaunas-Jovaru-g-2-818.html</td><td>/objektai/jovaru-g-2/</td></tr>
+          <tr><td>/Nuomojamos-patalpos-Jovaru-g-832.html</td><td>/objektai/jovaru-g-2/#laisvos</td></tr>
+          <tr><td>/Kontaktai-775.html</td><td>/#kontaktai</td></tr>
+          <tr><td>/Privatumo-politika-887.html</td><td>/privatumo-politika/</td></tr>
+          <tr><td>/Elektromobiliu-sprendimai-928.html</td><td>Sprendžia klientas: palikti atskirą puslapį (ES paramos informacija) arba peradresuoti į pradžią</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 13 -->
+    <section class="doc" id="s13">
+      <h2><span class="nr">13</span>Patikslinti su klientu</h2>
+      <ul class="chk">
+        <li><b>El. paštas.</b> Dabartinėje svetainėje jo nėra; makete įrašytas <code>info@elile.lt</code>.</li>
+        <li><b>Logotipas.</b> Ar tinka pasiūlytas ženklas (du pastatai), ar yra savas.</li>
+        <li><b>Pastatų aprašymai.</b> Aukštų skaičius, bendras plotas, statybos ar renovacijos metai, liftas, darbo laikas, apsauga. Makete aprašymai sudaryti tik iš dabartinės svetainės informacijos.</li>
+        <li><b>Kaina.</b> Ar į kainą įeina komunaliniai mokesčiai, ar jie skaičiuojami atskirai; ar yra depozitas.</li>
+        <li><b>DUK atsakymai.</b> Minimalus nuomos terminas, patalpų pritaikymo galimybės.</li>
+        <li><b>Nuotraukos.</b> Originalios pastatų nuotraukos; Jovarų g. 2 vidaus ir sandėlių nuotraukos; kiekvienai naujai patalpai bent 3 nuotraukos ir, jei yra, aukšto planas.</li>
+        <li><b>Elektromobilių įkrovimas.</b> Ar įkrovimo prieigą galima įrengti prie abiejų pastatų ir kokiomis sąlygomis.</li>
+        <li><b>Kontaktai.</b> Ar svetainėje rodyti direktoriaus telefoną, kam siųsti formų laiškus.</li>
+        <li><b>Elektromobilių sprendimų puslapis.</b> Pagal užduotį į bendrą dizainą neįtrauktas; nuspręsti, ar senas puslapis lieka.</li>
+        <li><b>Analitika.</b> Senoje svetainėje yra Universal Analytics kodas (UA-22859910-1), kuris nebeveikia; reikės GA4.</li>
+      </ul>
+    </section>
+
+    <!-- 14 -->
+    <section class="doc" id="s14">
+      <h2><span class="nr">14</span>Prieš paleidžiant</h2>
+      <ul class="chk">
+        <li>Pašalinta maketo juosta ir „Patalpų valdymo“ mygtukas (jų WordPress'e nėra, tai tik maketo įrankiai).</li>
+        <li>Įkeltos tikros patalpos; pavyzdinės patalpos neperkeltos.</li>
+        <li>Patikrinta: patalpos juodraštis dingsta iš sąrašų, skaičiai atsinaujina, 404 puslapis rodo nuorodą į sąrašą.</li>
+        <li>Formos išbandytos, laiškai ateina, CF7 pranešimai lietuviški.</li>
+        <li>Žemėlapiuose matoma OpenStreetMap nuoroda (licencijos reikalavimas).</li>
+        <li>Nuotraukos suspaustos, hero video iki 4 MB, telefonuose rodomas video paveikslėlis, jei įjungta „Disable Video Backgrounds On Mobile“.</li>
+        <li>SEO pavadinimai ir aprašymai: pradžia, laisvos patalpos, abu objektai, kiekviena patalpa.</li>
+        <li>301 peradresavimai iš 12 skyriaus.</li>
+        <li>Slapukų sutikimas, privatumo politika, GA4.</li>
+        <li>Patikrinta telefone: meniu, filtrai, žemėlapis, formos, prilipusi juosta patalpos puslapyje.</li>
+      </ul>
+    </section>
+
+    <p class="foot">Parengta 2026-09-23 pagal elile.lt turinį ir Salient SaaS bei Architect demo.</p>
+  </main>
+
+  <script>
+    document.querySelectorAll('.copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.parentElement.querySelector('code').innerText;
+        var done = function () { btn.textContent = 'Nukopijuota'; setTimeout(function () { btn.textContent = 'Kopijuoti'; }, 1600); };
+        if (navigator.clipboard) { navigator.clipboard.writeText(code).then(done, done); } else { done(); }
+      });
+    });
+  </script>
+</body>
+</html>

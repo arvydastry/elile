@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laisvos patalpos Kaune: biurai ir sandėliai | UAB „Elile“</title>
+  <meta name="description" content="Laisvų biuro ir sandėliavimo patalpų sąrašas Kaune, K. Donelaičio g. 33 ir Jovarų g. 2: plotas, aukštas, kaina ir vieta žemėlapyje.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Urbanist:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=6">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- Maketo juosta: į WordPress nekeliama -->
+  <div class="mockbar">
+    <div class="container mockbar__inner">
+      <span class="mockbar__label">Elile <span>maketas</span></span>
+      <nav aria-label="Maketo puslapiai">
+        <a href="index.html">Pradžia</a>
+        <a href="patalpos.html" aria-current="page">Laisvos patalpos</a>
+        <a href="objektas.html?id=donelaicio-33" data-mock-object="donelaicio-33">K. Donelaičio g. 33</a>
+        <a href="objektas.html?id=jovaru-2" data-mock-object="jovaru-2">Jovarų g. 2</a>
+        <a href="patalpa.html?id=donelaicio-33-v-4082">Patalpa</a>
+        <a href="salient-gidas.html">Salient gidas</a>
+      </nav>
+      <button class="mockbar__btn" type="button" data-demo-open><i class="ph ph-sliders-horizontal" aria-hidden="true"></i>Patalpų valdymas</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html" aria-label="UAB „Elile“, pradžia">
+        <svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="2" width="15" height="30" rx="4.5" fill="#0F1B2D"/><rect x="18" y="12" width="15" height="20" rx="4.5" fill="#F6C445"/></svg>
+        <span class="logo__word">elile</span>
+      </a>
+      <nav class="nav" aria-label="Pagrindinis meniu">
+        <a class="nav__link" href="patalpos.html" aria-current="page">Laisvos patalpos <span class="nav__badge" data-count="all">5</span></a>
+        <div class="nav__item" data-drop>
+          <button class="nav__link" type="button" aria-expanded="false" aria-haspopup="true">Objektai <i class="ph ph-caret-down" aria-hidden="true"></i></button>
+          <div class="nav__drop">
+            <a class="drop-obj" href="objektas.html?id=donelaicio-33">
+              <img src="assets/img/objektai/donelaicio-33.jpg" alt="">
+              <span class="drop-obj__text"><strong>K. Donelaičio g. 33</strong><span>Naujamiestis, biurų pastatas centre</span><span data-status-for="donelaicio-33"></span></span>
+            </a>
+            <a class="drop-obj" href="objektas.html?id=jovaru-2">
+              <img src="assets/img/objektai/jovaru-2.jpg" alt="">
+              <span class="drop-obj__text"><strong>Jovarų g. 2</strong><span>Veršvai, biurai ir sandėliai</span><span data-status-for="jovaru-2"></span></span>
+            </a>
+            <div class="nav__drop-foot"><span class="muted">Abu pastatai Kaune</span><a class="link-u" href="index.html#zemelapis">Žemėlapyje <i class="ph ph-arrow-right"></i></a></div>
+          </div>
+        </div>
+        <a class="nav__link" href="index.html#kaip">Nuomininkams</a>
+        <a class="nav__link" href="index.html#duk">DUK</a>
+        <a class="nav__link" href="#kontaktai">Kontaktai</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+37069992062" aria-label="Skambinti +370 699 92062"><i class="ph ph-phone" aria-hidden="true"></i><span>+370 699 92062</span></a>
+        <a class="btn btn--sun btn--sm" href="#kontaktai">Užsakyti apžiūrą</a>
+        <button class="burger" type="button" aria-label="Atidaryti meniu" aria-expanded="false" aria-controls="mobile-menu"><i class="ph ph-list" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meniu">
+    <div class="container">
+      <div class="mobile-menu__top">
+        <a class="logo" href="index.html" aria-label="UAB „Elile“, pradžia"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="2" width="15" height="30" rx="4.5" fill="#0F1B2D"/><rect x="18" y="12" width="15" height="20" rx="4.5" fill="#F6C445"/></svg><span class="logo__word">elile</span></a>
+        <button class="mobile-menu__close" type="button" aria-label="Uždaryti meniu"><i class="ph ph-x" aria-hidden="true"></i></button>
+      </div>
+      <nav class="mobile-menu__links" aria-label="Meniu mobiliesiems">
+        <a href="patalpos.html">Laisvos patalpos <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+        <a href="objektas.html?id=donelaicio-33">K. Donelaičio g. 33 <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+        <a href="objektas.html?id=jovaru-2">Jovarų g. 2 <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+        <a href="index.html#kaip">Nuomininkams <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+        <a href="index.html#duk">DUK <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+        <a href="#kontaktai">Kontaktai <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      </nav>
+      <div class="mobile-menu__foot">
+        <a class="btn btn--sun" href="#kontaktai">Užsakyti apžiūrą</a>
+        <a class="btn btn--ghost" href="tel:+37069992062"><i class="ph ph-phone" aria-hidden="true"></i>&nbsp;+370 699 92062</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="turinys">
+
+    <section class="page-head">
+      <div class="container">
+        <ol class="crumbs" aria-label="Kelias"><li><a href="index.html">Pradžia</a></li><li aria-current="page">Laisvos patalpos</li></ol>
+        <div class="page-head__row">
+          <div>
+            <h1 data-split>Laisvos patalpos <span class="count-pill" data-count="all">5</span></h1>
+            <p class="lead" data-reveal>Biuro ir sandėliavimo patalpos K. Donelaičio g. 33 ir Jovarų g. 2, Kaune. Kai patalpos išnuomojamos, jos iš sąrašo dingsta.</p>
+          </div>
+          <div class="page-head__side" data-reveal>
+            <a class="link-u page-head__notify" href="#pranesimai"><i class="ph ph-bell-ringing" aria-hidden="true"></i>Gauti pranešimus</a>
+            <div class="seg view-toggle" data-view role="group" aria-label="Rodinys">
+              <button type="button" data-value="list" aria-pressed="true"><i class="ph ph-list" aria-hidden="true"></i>Sąrašas</button>
+              <button type="button" data-value="map" aria-pressed="false"><i class="ph ph-map-trifold" aria-hidden="true"></i>Žemėlapis</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtrai: Salient Post Grid filtrai (Portfolio kategorijos) + papildomi laukai -->
+    <div class="filterbar" data-listing-controls>
+      <div class="container filterbar__inner">
+        <div class="seg" data-listing-object role="group" aria-label="Pastatas">
+          <button type="button" data-value="all" aria-pressed="true">Visi <span class="chip__count">5</span></button>
+          <button type="button" data-value="donelaicio-33" aria-pressed="false">K. Donelaičio g. 33 <span class="chip__count">3</span></button>
+          <button type="button" data-value="jovaru-2" aria-pressed="false">Jovarų g. 2 <span class="chip__count">2</span></button>
+        </div>
+        <label class="select-pill"><span class="visually-hidden">Paskirtis</span>
+          <select data-listing="type"><option value="all">Visa paskirtis</option><option value="Biuras">Biuras</option><option value="Paslaugos">Paslaugos</option><option value="Sandėlis">Sandėlis</option></select></label>
+        <label class="select-pill"><span class="visually-hidden">Plotas</span>
+          <select data-listing="area"><option value="all">Bet koks plotas</option><option value="lt50">Iki 50 m²</option><option value="50-150">50-150 m²</option><option value="gt150">Daugiau nei 150 m²</option></select></label>
+        <label class="select-pill"><span class="visually-hidden">Rikiavimas</span>
+          <select data-listing="sort"><option value="new">Naujausios</option><option value="area">Pagal plotą</option><option value="price">Pagal kainą</option></select></label>
+        <div class="filterbar__meta"><span aria-live="polite">Rasta: <strong data-result-count>5 patalpos</strong></span><button class="linklike" type="button" data-clear-all hidden>Išvalyti filtrus</button></div>
+      </div>
+    </div>
+
+    <div class="container listing">
+      <div class="listing__list" data-render="listing"></div>
+      <div class="listing__map" data-map="listing" role="region" aria-label="Pastatai žemėlapyje"></div>
+    </div>
+
+    <!-- 9. Pranešimai apie atsilaisvinusias patalpas -->
+    <section class="section section--tight" id="pranesimai">
+      <div class="container">
+        <div class="notify" data-reveal>
+          <span class="notify__shape notify__shape--a" data-grow aria-hidden="true"></span>
+          <span class="notify__shape notify__shape--b" aria-hidden="true"></span>
+          <div>
+            <h2 data-split>Pranešime, kai atsilaisvins</h2>
+            <p class="lead">Palikite el. paštą ir apie naujas laisvas patalpas sužinosite pirmieji. Galite pasirinkti vieną pastatą arba abu.</p>
+            <form class="notify-form" data-notify-form novalidate>
+              <div class="field"><label for="n-email">El. paštas</label><input id="n-email" type="email" name="email" placeholder="jusu@imone.lt" autocomplete="email" required><span class="field__error">Įrašykite el. pašto adresą.</span></div>
+              <div class="field"><label for="n-obj">Pastatas</label><select id="n-obj" name="objektas"><option value="visi">Abu pastatai</option><option value="donelaicio-33">K. Donelaičio g. 33</option><option value="jovaru-2">Jovarų g. 2</option></select></div>
+              <button class="btn btn--ink" type="submit"><span>Gauti pranešimus</span><span class="btn__icon"><i class="ph ph-bell-ringing"></i><i class="ph ph-bell-ringing"></i></span></button>
+              <p class="notify-form__msg" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+          <div class="notify__visual" aria-hidden="true">
+            <div class="notify__photo" data-mask="circle" style="--d:200ms"><img src="https://images.pexels.com/photos/8815930/pexels-photo-8815930.jpeg?auto=compress&cs=tinysrgb&w=900" alt="" loading="lazy"></div>
+            <div class="toast px" data-px="-0.08">
+              <span class="toast__icon"><i class="ph ph-bell-ringing"></i></span>
+              <span><strong>Atsilaisvino patalpos</strong>Biuro patalpos, 40,82 m², K. Donelaičio g. 33<small>Laiškas prenumeratoriui</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Kontaktai (Salient Global Section prieš poraštę) -->
+    <section class="section section--white" id="kontaktai">
+      <div class="container contact">
+        <div>
+          <span class="eyebrow" data-reveal>Kontaktai</span>
+          <h2 data-split style="margin-top:18px">Užsakykite apžiūrą</h2>
+          <p class="lead" data-reveal>Parodysime patalpas ir vietoje atsakysime į klausimus. Laiką suderinsime telefonu.</p>
+          <div class="people">
+            <a class="person" href="tel:+37069992062" data-reveal><span class="person__avatar">GN</span><span class="person__text"><strong>Gediminas Navickas</strong><span>Nuomos vadybininkas</span></span><span class="person__phone">+370 699 92062</span></a>
+            <a class="person" href="tel:+37065224474" data-reveal style="--d:100ms"><span class="person__avatar person__avatar--ink">SI</span><span class="person__text"><strong>Saulius Tomas Ivanauskas</strong><span>Direktorius</span></span><span class="person__phone">+370 652 24474</span></a>
+            <a class="person" href="mailto:info@elile.lt" data-reveal style="--d:200ms"><span class="person__avatar"><i class="ph ph-envelope-simple" aria-hidden="true"></i></span><span class="person__text"><strong>info@elile.lt</strong><span>El. paštas</span></span></a>
+          </div>
+        </div>
+        <div class="form-card" data-reveal style="--d:120ms">
+          <h3>Apžiūros užklausa</h3>
+          <p>Užpildykite formą ir susisieksime, kad suderintume laiką.</p>
+          <form data-form="contact" novalidate>
+            <div class="form-grid">
+              <div class="field"><label for="c-name">Vardas ir pavardė</label><input id="c-name" name="vardas" autocomplete="name" required><span class="field__error">Įrašykite vardą.</span></div>
+              <div class="field"><label for="c-phone">Telefonas</label><input id="c-phone" name="telefonas" type="tel" inputmode="tel" autocomplete="tel" required><span class="field__error">Įrašykite telefono numerį.</span></div>
+              <div class="field"><label for="c-email">El. paštas <span class="opt">(nebūtina)</span></label><input id="c-email" name="email" type="email" autocomplete="email"></div>
+              <div class="field"><label for="c-obj">Pastatas</label><select id="c-obj" name="objektas" data-object-select><option value="donelaicio-33">K. Donelaičio g. 33</option><option value="jovaru-2">Jovarų g. 2</option><option value="nezinau">Dar nežinau</option></select></div>
+              <fieldset class="field full"><legend>Reikalingas plotas</legend>
+                <div class="choice">
+                  <label><input type="radio" name="plotas" value="iki 50"><span>Iki 50 m²</span></label>
+                  <label><input type="radio" name="plotas" value="50-150"><span>50-150 m²</span></label>
+                  <label><input type="radio" name="plotas" value="150+"><span>Daugiau nei 150 m²</span></label>
+                </div>
+              </fieldset>
+              <div class="field full"><label for="c-msg">Žinutė <span class="opt">(nebūtina)</span></label><textarea id="c-msg" name="zinute" placeholder="Kokiai veiklai reikia patalpų, nuo kada norėtumėte įsikelti?"></textarea></div>
+            </div>
+            <div class="form-foot">
+              <button class="btn btn--sun" type="submit"><span>Užsakyti apžiūrą</span><span class="btn__icon"><i class="ph ph-arrow-right"></i><i class="ph ph-arrow-right"></i></span></button>
+              <small>Duomenis naudosime tik atsakydami į užklausą. <a class="link-u" href="#">Privatumo politika</a></small>
+            </div>
+            <div class="form-success" role="status" aria-live="polite"><i class="ph ph-check-circle" aria-hidden="true"></i><span>Ačiū! Užklausą gavome. Gediminas susisieks su jumis dėl apžiūros laiko.</span></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cta">
+        <p class="footer__big" data-split>Raskime vietą jūsų <span class="hl">verslui<svg class="hl__svg" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M5 16.5C58 9 115 6.5 170 7.6c44 .9 86 4.6 125 1.4"/></svg></span></p>
+        <div class="footer__actions">
+          <a class="btn btn--sun" href="#kontaktai"><span>Užsakyti apžiūrą</span><span class="btn__icon"><i class="ph ph-arrow-right"></i><i class="ph ph-arrow-right"></i></span></a>
+          <a class="phone-link" href="tel:+37069992062"><span class="phone-link__icon"><i class="ph ph-phone" aria-hidden="true"></i></span><span><small>Nuomos klausimais</small>+370 699 92062</span></a>
+        </div>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__about">
+          <a class="logo" href="index.html" aria-label="UAB „Elile“, pradžia"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="2" width="15" height="30" rx="4.5" fill="#0F1B2D"/><rect x="18" y="12" width="15" height="20" rx="4.5" fill="#F6C445"/></svg><span class="logo__word">elile</span></a>
+          <p>Biuro ir sandėliavimo patalpų nuoma Kaune: K. Donelaičio g. 33 ir Jovarų g. 2.</p>
+        </div>
+        <div>
+          <h4>Objektai</h4>
+          <ul><li><a href="objektas.html?id=donelaicio-33">K. Donelaičio g. 33</a></li><li><a href="objektas.html?id=jovaru-2">Jovarų g. 2</a></li><li><a href="patalpos.html">Laisvos patalpos</a></li></ul>
+        </div>
+        <div>
+          <h4>Nuomininkams</h4>
+          <ul><li><a href="index.html#kaip">Kaip išsinuomoti</a></li><li><a href="index.html#duk">Dažni klausimai</a></li><li><a href="index.html#pranesimai">Pranešimai apie laisvas patalpas</a></li></ul>
+        </div>
+        <div>
+          <h4>Rekvizitai</h4>
+          <p class="footer__req">UAB „Elile“<br>Įmonės kodas 302312560<br>PVM kodas LT100007225110<br>Purvynės g. 15-15, LT-93128 Neringa</p>
+        </div>
+      </div>
+      <div class="footer__bottom"><span>© 2026 UAB „Elile“. Visos teisės saugomos.</span><a href="#">Privatumo politika</a></div>
+    </div>
+  </footer>
+
+  <button class="demo-fab" type="button" data-demo-open><i class="ph ph-sliders-horizontal" aria-hidden="true"></i>Patalpų valdymas</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="assets/js/data.js?v=6" defer></script>
+  <script src="assets/js/main.js?v=6" defer></script>
+</body>
+</html>
