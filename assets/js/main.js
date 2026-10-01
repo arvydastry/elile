@@ -535,7 +535,7 @@
               <p class="obj-hero__sub" data-reveal style="--d:200ms">${esc(o.city)}, ${esc(o.district)}</p>
               <p class="lead" data-reveal style="--d:300ms">${esc(o.lead)}</p>
               <div class="obj-hero__actions" data-reveal style="--d:400ms">
-                <a class="btn btn--sun" href="#laisvos"><span>Laisvos patalpos (<span data-count="${o.id}">${n}</span>)</span><span class="btn__icon"><i class="ph ph-arrow-down"></i><i class="ph ph-arrow-down"></i></span></a>
+                <a class="btn btn--green" href="#laisvos"><span>Laisvos patalpos (<span data-count="${o.id}">${n}</span>)</span><span class="btn__icon"><i class="ph ph-arrow-down"></i><i class="ph ph-arrow-down"></i></span></a>
                 <a class="btn btn--ghost" href="${routeUrl(o)}" target="_blank" rel="noopener">Maršrutas</a>
               </div>
             </div>
@@ -556,7 +556,7 @@
         <div class="container">
           <div class="facts">
             ${o.highlights.map((h, i) => `<div class="fact" data-reveal style="--d:${i * 90}ms"><i class="ph ${h.icon}" aria-hidden="true"></i><strong>${esc(h.value)}</strong><span>${esc(h.label)}</span></div>`).join('')}
-            <a class="fact fact--sun" href="#laisvos" data-reveal style="--d:270ms"><i class="ph ph-door-open" aria-hidden="true"></i><strong data-count="${o.id}">${n}</strong><span><span data-count="${o.id}" data-count-format="word"></span> šiame pastate</span></a>
+            <a class="fact fact--green" href="#laisvos" data-reveal style="--d:270ms"><i class="ph ph-door-open" aria-hidden="true"></i><strong data-count="${o.id}">${n}</strong><span><span data-count="${o.id}" data-count-format="word"></span> šiame pastate</span></a>
           </div>
         </div>
       </section>
@@ -650,7 +650,7 @@
           <span class="empty-card__icon"><i class="ph ph-key"></i></span>
           <h1>Šios patalpos jau išnuomotos</h1>
           <p class="lead">${esc(u.title)}, ${fmtArea(u.area)}, ${esc(o.name)}. WordPress'e išnuomota patalpa perkeliama į juodraštį, todėl lankytojas pamatytų šį pranešimą arba būtų nukreiptas į laisvų patalpų sąrašą.</p>
-          <div class="obj-hero__actions"><a class="btn btn--sun" href="patalpos.html"><span>Laisvos patalpos</span><span class="btn__icon"><i class="ph ph-arrow-right"></i><i class="ph ph-arrow-right"></i></span></a>
+          <div class="obj-hero__actions"><a class="btn btn--green" href="patalpos.html"><span>Laisvos patalpos</span><span class="btn__icon"><i class="ph ph-arrow-right"></i><i class="ph ph-arrow-right"></i></span></a>
           <a class="btn btn--ghost" href="objektas.html?id=${o.id}">Apie pastatą</a></div>
         </div></div></section>`;
       return;
@@ -753,7 +753,7 @@
                 </div>
               </fieldset>
               <div class="field"><label for="b-msg">Žinutė <span class="opt">(nebūtina)</span></label><textarea id="b-msg" name="zinute"></textarea></div>
-              <button class="btn btn--sun btn--block" type="submit"><span>Užsakyti apžiūrą</span><span class="btn__icon"><i class="ph ph-arrow-right"></i><i class="ph ph-arrow-right"></i></span></button>
+              <button class="btn btn--green btn--block" type="submit"><span>Užsakyti apžiūrą</span><span class="btn__icon"><i class="ph ph-arrow-right"></i><i class="ph ph-arrow-right"></i></span></button>
               <div class="form-success" role="status" aria-live="polite"><i class="ph ph-check-circle"></i><span>Ačiū! Užklausą gavome. ${esc(person.name.split(' ')[0])} susisieks su jumis dėl apžiūros laiko.</span></div>
             </form>
           </div>
@@ -778,7 +778,7 @@
 
     if (bar) {
       bar.innerHTML = `<a class="btn btn--ghost" href="${person.href}"><i class="ph ph-phone"></i>&nbsp;Skambinti</a>
-        <a class="btn btn--sun" href="#apziura"><span>Užsakyti apžiūrą</span></a>`;
+        <a class="btn btn--green" href="#apziura"><span>Užsakyti apžiūrą</span></a>`;
     }
     lightboxSets.unit = u.photos;
   };

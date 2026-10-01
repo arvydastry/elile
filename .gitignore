@@ -1,3 +1,5 @@
 .DS_Store
 .claude/
 node_modules/
+# WordPress versija: mokama Salient tema ir prisijungimo duomenys — į viešą repozitoriją nekeliama
+wordpress/

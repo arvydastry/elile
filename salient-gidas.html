@@ -12,7 +12,7 @@
   <style>
     :root {
       --ink: #0F1B2D; --text: #3E4A5C; --muted: #677185; --line: #E3E7ED; --bg: #F6F7F9;
-      --sun: #F6C445; --sun-50: #FFF8E4; --sun-100: #FCEBB6; --ok: #0E7A3A; --r: 14px;
+      --sun: #16A0B2; --sun-50: #EAF7F9; --sun-100: #C8ECF1; --ok: #0E7350; --r: 14px;
       --f-d: "Urbanist", "Plus Jakarta Sans", sans-serif; --f-b: "Plus Jakarta Sans", system-ui, sans-serif;
       --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     }
@@ -156,7 +156,7 @@
           <tr><td>Antraščių įvažiavimas eilutėmis</td><td>Abu</td><td>Split Line Heading (Line Reveal By Space)</td><td>Visos H1 ir H2</td></tr>
           <tr><td>Pabrauktas žodis „verslui“</td><td>SaaS</td><td>Highlighted Text, stilius Scribble, spalva Extra Color 1</td><td>Hero, poraštė</td></tr>
           <tr><td>Video suapvalintame rėmelyje, atsiveria iš šono</td><td>SaaS</td><td>Video Player (Self Hosted) + Column Animation: Mask Reveal</td><td>Hero</td></tr>
-          <tr><td>Geltonas apskritimas, žiedas, taškas</td><td>SaaS</td><td>Animated Shape (Circle) + Parallax Scroll</td><td>Hero, pranešimų blokas, objekto viršus</td></tr>
+          <tr><td>Turkio (Oasis) apskritimas, žiedas, taškas</td><td>SaaS</td><td>Animated Shape (Circle) + Parallax Scroll</td><td>Hero, pranešimų blokas, objekto viršus</td></tr>
           <tr><td>Kortelė „Naujausia laisva patalpa“</td><td>SaaS</td><td>Post Grid (1 įrašas) su Parallax Scroll</td><td>Hero</td></tr>
           <tr><td>Sakinys su nuotraukomis tekste</td><td>Architect</td><td>Text With Inline Images</td><td>Objektų įžanga</td></tr>
           <tr><td>Objektų kortelės su paralaksu</td><td>Architect</td><td>Image With Animation (Parallax, Border Radius 28)</td><td>Pradžia</td></tr>
@@ -176,10 +176,11 @@
       <div class="table-wrap"><table>
         <thead><tr><th>Paskirtis</th><th>Reikšmė</th><th>Kodėl</th></tr></thead>
         <tbody>
-          <tr><td>Saulės geltona</td><td><span class="sw" style="background:#F6C445"></span><code>#F6C445</code></td><td>Pozityvi, verslui tinkama akcentinė spalva; atliepia geltoną Jovarų g. 2 fasadą. Mygtukai, pabraukimai, formos.</td></tr>
-          <tr><td>Tamsiai mėlyna (tekstas)</td><td><span class="sw" style="background:#0F1B2D"></span><code>#0F1B2D</code></td><td>Antraštės, antriniai mygtukai, žymekliai. Kontrastas su geltona 11:1.</td></tr>
+          <tr><td>Green Monochrome (PPG)</td><td><span class="sw" style="background:#0E7350"></span><code>#0E7350</code></td><td>Pagrindiniai mygtukai ir veiksmai („Užsakyti apžiūrą“, „Laisvos patalpos“), statusas „Laisva“, svarbiausi blokai. Baltas tekstas — kontrastas 5,7:1.</td></tr>
+          <tr><td>Oasis (PPG)</td><td><span class="sw" style="background:#16A0B2"></span><code>#16A0B2</code></td><td>Akcentai: ranka pabraukti žodžiai, dekoratyvūs apskritimai, skaičiai, žemėlapio žymekliai, bėganti juosta, pranešimų blokas. Tekstas ant jos — tamsus <code>#0F1B2D</code> (5,6:1).</td></tr>
+          <tr><td>Tamsiai mėlyna (tekstas)</td><td><span class="sw" style="background:#0F1B2D"></span><code>#0F1B2D</code></td><td>Antraštės, antriniai mygtukai, žymekliai.</td></tr>
           <tr><td>Fonas</td><td><span class="sw" style="background:#F6F7F9"></span><code>#F6F7F9</code> ir <code>#FFFFFF</code></td><td>Šviesūs, vienas po kito einantys pilki ir balti blokai.</td></tr>
-          <tr><td>„Laisva“ statusas</td><td><span class="sw" style="background:#16A34A"></span><code>#16A34A</code>, tekstas <code>#0E7A3A</code></td><td>Tik laisvumui žymėti.</td></tr>
+          <tr><td>„Laisva“ statusas</td><td><span class="sw" style="background:#1A9466"></span><code>#1A9466</code>, tekstas <code>#0E7350</code></td><td>Tik laisvumui žymėti.</td></tr>
           <tr><td>Antraštės</td><td>Urbanist 600</td><td>Kaip Architect demo. Palaiko lietuviškas raides.</td></tr>
           <tr><td>Tekstas, meniu, mygtukai</td><td>Plus Jakarta Sans 400/500/600</td><td>Kaip SaaS demo.</td></tr>
         </tbody>
@@ -269,10 +270,10 @@
       <div class="table-wrap"><table>
         <thead><tr><th>Nustatymas</th><th>Reikšmė</th><th>Kam</th></tr></thead>
         <tbody>
-          <tr><td>Accent Color</td><td><code>#0F1B2D</code></td><td>Nuorodos, aktyvūs filtrai, antriniai mygtukai (baltas tekstas tinka be papildomo CSS)</td></tr>
-          <tr><td>Extra Color 1</td><td><code>#F6C445</code></td><td>Pagrindiniai mygtukai (teksto spalva <code>#0F1B2D</code>), Highlighted Text, Animated Shape, bėganti juosta</td></tr>
-          <tr><td>Extra Color 2</td><td><code>#FFF8E4</code></td><td>Pranešimų bloko fonas, ikonų fonai</td></tr>
-          <tr><td>Extra Color 3</td><td><code>#16A34A</code></td><td>Tik statusas „Laisva“</td></tr>
+          <tr><td>Accent Color</td><td><code>#0E7350</code></td><td>Green Monochrome: pagrindiniai mygtukai (baltas tekstas), meniu mygtukas, nuorodų pabraukimas meniu</td></tr>
+          <tr><td>Extra Color 1</td><td><code>#16A0B2</code></td><td>Oasis: Highlighted Text, Animated Shape, bėganti juosta, skaičiai (tekstas ant jos — <code>#0F1B2D</code>)</td></tr>
+          <tr><td>Extra Color 2</td><td><code>#0F1B2D</code></td><td>Antriniai mygtukai, tamsūs blokai</td></tr>
+          <tr><td>Extra Color 3</td><td><code>#EAF7F9</code></td><td>Pranešimų bloko fonas, ikonų fonai</td></tr>
           <tr><td>Overall Background</td><td><code>#F6F7F9</code></td><td>Puslapio fonas; balti blokai dedami eilutės spalva <code>#FFFFFF</code></td></tr>
           <tr><td>Body Text / Headings</td><td><code>#3E4A5C</code> / <code>#0F1B2D</code></td><td></td></tr>
         </tbody>
@@ -321,8 +322,8 @@
           <tr><td>2. Objektai</td><td>Fonas #FFFFFF; Padding 7 % / 5 %</td><td>Text With Inline Images (H2, animacija Circle Fade In, 2 nuotraukos, nuorodos į objektus). Inner Row 1/2 + 1/2, antros kolonos Top Margin 9 %: Image With Animation (Parallax, radius 28, Reveal From Bottom), Text Block su <code>[elile_laisvos objektas="..."]</code>, H4 adresas, Text Block, Inner Row 3 × 1/3 su Icon + skaičius. Column Link į objekto puslapį.</td></tr>
           <tr><td>3. Laisvos patalpos</td><td>Padding 8 %; kolonos 4/12 (Sticky: On) + 8/12</td><td>Kairėje: Split Line Heading H2, Text Block, Button „Visos laisvos patalpos“ (Accent), Text Block su nuoroda į prenumeratą. Dešinėje: Post Grid (2 skyrius) su filtrais pagal pastatą.</td></tr>
           <tr><td>4. Žemėlapis</td><td>Fonas #FFFFFF; kolonos 4/12 + 8/12 arba 1/1 su perdengta kortele (10.2 CSS <code>elile-map-panel</code>)</td><td>Split Line Heading „Du adresai Kaune“; Text Block. Map: Leaflet, Zoom 13, 2 žymekliai (7 skyriaus koordinatės), žymeklio spalva Extra Color 1. Kortelėje abu objektai: nuotrauka, adresas, <code>[elile_laisvos]</code>, 2 faktai.</td></tr>
-          <tr><td>5. Bėgančios juostos</td><td>2 eilutės, Padding 0, klasės <code>elile-band elile-band--ink</code> ir <code>elile-band elile-band--sun</code></td><td>Scrolling Text: „K. Donelaičio g. 33, Jovarų g. 2, Kaunas“ ir „Biurai, Sandėliai, Automobilių aikštelės, Visos komunikacijos“; greitis lėtas; kryptys priešingos.</td></tr>
-          <tr><td>6. Privalumai</td><td>Padding 8 %; Inner Row: 1/2 + 1/2 (2 × 2)</td><td>H6 „Nuomininkams“, Split Line Heading, Text Block. Kolonos su Border Radius 28 ir Padding 32: nuotrauka su gradientu (tvarka), geltona (komunikacijos), balta su rėmeliu (aikštelės), tamsi (be tarpininkų), nuotrauka (sandėliai).</td></tr>
+          <tr><td>5. Bėgančios juostos</td><td>2 eilutės, Padding 0, klasės <code>elile-band elile-band--green</code> ir <code>elile-band elile-band--oasis</code></td><td>Scrolling Text: „K. Donelaičio g. 33, Jovarų g. 2, Kaunas“ ir „Biurai, Sandėliai, Automobilių aikštelės, Visos komunikacijos“; greitis lėtas; kryptys priešingos.</td></tr>
+          <tr><td>6. Privalumai</td><td>Padding 8 %; Inner Row: 1/2 + 1/2 (2 × 2)</td><td>H6 „Nuomininkams“, Split Line Heading, Text Block. Kolonos su Border Radius 28 ir Padding 32: nuotrauka su gradientu (tvarka), turkio Oasis (komunikacijos), balta su rėmeliu (aikštelės), žalia Green Monochrome (be tarpininkų), nuotrauka (sandėliai).</td></tr>
           <tr><td>7. Kauno juosta</td><td>Background Image, Parallax Background: On (Medium), Color Overlay #0F1B2D 10 % → 90 %, Padding top 22 %</td><td>Split Line Heading H2 (baltas), Text Block, Inner Row 4 × 1/4: Milestone 90 m, 290 m, 0,5 km; ketvirtoje Text Block <code>[elile_laisvos forma="skaicius"]</code>.</td></tr>
           <tr><td>8. Kaip išsinuomoti</td><td>Fonas #FFFFFF; Inner Row 4 × 1/4, klasė <code>elile-steps</code> (punktyrinė linija)</td><td>Icon (Border Circle, 68 px), H3, Text Block: Išsirinkite, Apžiūrėkite, Susitarkite, Įsikurkite.</td></tr>
           <tr><td>9. Pranešimai</td><td>Kolona su fonu Extra Color 2, radius 28, Padding 6 %; 7/12 + 5/12</td><td>Split Line Heading, Text Block, CF7 forma „Pranešimai“ (9 skyrius) arba MailPoet forma. Dešinėje: Image With Animation (Mask Reveal, Circle) ir Raw HTML pranešimo kortelė su Parallax Scroll.</td></tr>
@@ -335,7 +336,7 @@
     <!-- 6 -->
     <section class="doc" id="s6">
       <h2><span class="nr">6</span>Laisvų patalpų puslapis</h2>
-      <p>Adresas <code>/laisvos-patalpos/</code>. Viršuje trumpa eilutė: kelio nuorodos (Yoast <code>[wpseo_breadcrumb]</code>), H1 „Laisvos patalpos“ ir skaičius <code>[elile_laisvos forma="skaicius"]</code> geltoname apskritime, įžanga.</p>
+      <p>Adresas <code>/laisvos-patalpos/</code>. Viršuje trumpa eilutė: kelio nuorodos (Yoast <code>[wpseo_breadcrumb]</code>), H1 „Laisvos patalpos“ ir skaičius <code>[elile_laisvos forma="skaicius"]</code> turkio (Oasis) apskritime, įžanga.</p>
       <ul>
         <li><b>Eilutė su dviem kolonomis 7/12 + 5/12.</b> Kairėje Post Grid (visi Portfolio įrašai, filtrai pagal pastatą). Dešinėje Map su abiem žymekliais, kolonai Sticky: On.</li>
         <li><b>Po sąrašu</b> pranešimų blokas (tas pats kaip pradžioje) ir kontaktų Global Section.</li>
@@ -351,7 +352,7 @@
         <thead><tr><th>Sekcija</th><th>Elementai</th></tr></thead>
         <tbody>
           <tr><td>Viršus</td><td>Kelio nuorodos; kolonos 5/12 + 7/12. Kairėje <code>[elile_laisvos objektas="..."]</code>, Split Line Heading H1 (adresas), miestas ir rajonas, Text Block, mygtukai „Laisvos patalpos (N)“ ir „Maršrutas“ (Google Maps nuoroda). Dešinėje Cascading Images: pastato nuotrauka ir antra nuotrauka arba žemėlapio ištrauka; Animated Shape.</td></tr>
-          <tr><td>Faktai</td><td>Inner Row 4 × 1/4, baltos kolonos su rėmeliu: Icon + skaičius + tekstas; ketvirta geltona su laisvų patalpų skaičiumi.</td></tr>
+          <tr><td>Faktai</td><td>Inner Row 4 × 1/4, baltos kolonos su rėmeliu: Icon + skaičius + tekstas; ketvirta žalia (Green Monochrome) su laisvų patalpų skaičiumi.</td></tr>
           <tr><td>Laisvos patalpos</td><td>Split Line Heading, Text Block, Post Grid (kategorija = šis pastatas, 3 stulpeliai), <code>[elile_tuscia objektas="..."]</code> po juo.</td></tr>
           <tr><td>Apie pastatą</td><td>5/12 (Sticky) su tekstu + 7/12 su komunikacijomis (Fancy Unordered List arba Icon List, 3 stulpeliai) ir galerija (Image Gallery, lightbox).</td></tr>
           <tr><td>Vieta</td><td>7/12 Map (pastatas ir aplinkinės vietos) + 5/12 sąrašas su atstumais.</td></tr>
@@ -525,14 +526,14 @@ document.querySelectorAll('.elile-hero-video').forEach(function (col) {
 
       <h3>10.2 Custom CSS (Theme Options → General Settings → Custom CSS Code)</h3>
       <div class="code" data-lang="CSS"><button class="copy" type="button">Kopijuoti</button><pre><code>/* ===== Elile: papildomi stiliai ===== */
-:root { --elile-ink: #0F1B2D; --elile-sun: #F6C445; --elile-sun-50: #FFF8E4; --elile-ok: #16A34A; --elile-line: #E3E7ED; }
+:root { --elile-ink: #0F1B2D; --elile-green: #0E7350; --elile-oasis: #16A0B2; --elile-oasis-50: #EAF7F9; --elile-ok: #1A9466; --elile-line: #E3E7ED; }
 
 /* Statusas „N laisvos patalpos“ ir skaičius meniu */
 .elile-status { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 10px; border-radius: 999px; background: #EAF7EF; color: #0E7A3A; font-size: 13px; font-weight: 600; line-height: 1; }
 .elile-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--elile-ok); box-shadow: 0 0 0 3px rgba(22,163,74,.18); }
 .elile-status--off { background: #EEF1F4; color: #677185; }
 .elile-status--off::before { background: #B7C0CC; box-shadow: none; }
-.elile-badge { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--elile-sun); color: var(--elile-ink); font-size: 12px; font-weight: 700; }
+.elile-badge { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--elile-oasis); color: var(--elile-ink); font-size: 12px; font-weight: 700; }
 
 /* Geltoni mygtukai su tamsiu tekstu */
 .nectar-button.extra-color-1, .nectar-button.extra-color-1:hover { color: var(--elile-ink) !important; }
@@ -544,8 +545,8 @@ document.querySelectorAll('.elile-hero-video').forEach(function (col) {
 
 /* Susikertančios bėgančios juostos */
 .elile-band { position: relative; z-index: 1; }
-.elile-band--ink { transform: rotate(4.5deg); margin-top: 80px; }
-.elile-band--sun { transform: rotate(-5.5deg); margin-top: -80px; margin-bottom: 80px; z-index: 2; }
+.elile-band--green { transform: rotate(4.5deg); margin-top: 80px; }
+.elile-band--oasis { transform: rotate(-5.5deg); margin-top: -80px; margin-bottom: 80px; z-index: 2; }
 
 /* Kaip išsinuomoti: punktyrinė linija tarp žingsnių */
 .elile-steps { position: relative; }
@@ -567,7 +568,7 @@ document.querySelectorAll('.elile-hero-video').forEach(function (col) {
 @media (max-width: 999px) {
   .elile-mobile-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; display: flex; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.95); border-top: 1px solid var(--elile-line); }
   .elile-mobile-bar a { flex: 1; display: grid; place-items: center; height: 50px; border-radius: 999px; border: 1.5px solid rgba(15,27,45,.2); color: var(--elile-ink); font-weight: 600; }
-  .elile-mobile-bar a.is-main { background: var(--elile-sun); border-color: var(--elile-sun); }
+  .elile-mobile-bar a.is-main { background: var(--elile-green); border-color: var(--elile-green); color: #fff; }
   body.single-portfolio { padding-bottom: 76px; }
 }
 
