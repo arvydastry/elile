@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Salient įgyvendinimo gidas | UAB „Elile“</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon.svg?v=2" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Urbanist:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -112,7 +112,7 @@
 
   <header class="doc-hero">
     <div class="wrap">
-      <img src="assets/img/elile-logo.svg" alt="elile">
+      <img src="assets/img/elile-logo.svg?v=2" alt="elile" style="height:56px;width:auto">
       <h1>Salient įgyvendinimo gidas</h1>
       <p>Kaip naują elile.lt maketą perkelti į WordPress su Salient tema: kaip bus įkeliamos ir išimamos laisvos patalpos, temos nustatymai, sekcijų sandara, formos, papildomas kodas ir nuotraukos.</p>
       <div class="doc-links">
@@ -255,7 +255,7 @@
     <section class="doc" id="s4">
       <h2><span class="nr">4</span>Theme Options</h2>
       <h3>4.1 Logotipas</h3>
-      <p>Logotipas makete yra pasiūlymas: du skirtingo aukščio blokai reiškia du pastatus. Jei klientas turi savo logotipą, naudokite jį.</p>
+      <p>Logotipas: du pastatų kontūrai (Green Monochrome ir Oasis) ir žodis „elile“. Vektorinis SVG perbraižytas iš kliento pateikto PNG, todėl ryškus bet kokio dydžio ir Retina ekranuose.</p>
       <div class="table-wrap"><table>
         <thead><tr><th>Nustatymas</th><th>Reikšmė</th></tr></thead>
         <tbody>
@@ -323,8 +323,8 @@
           <tr><td>3. Laisvos patalpos</td><td>Padding 8 %; kolonos 4/12 (Sticky: On) + 8/12</td><td>Kairėje: Split Line Heading H2, Text Block, Button „Visos laisvos patalpos“ (Accent), Text Block su nuoroda į prenumeratą. Dešinėje: Post Grid (2 skyrius) su filtrais pagal pastatą.</td></tr>
           <tr><td>4. Žemėlapis</td><td>Fonas #FFFFFF; kolonos 4/12 + 8/12 arba 1/1 su perdengta kortele (10.2 CSS <code>elile-map-panel</code>)</td><td>Split Line Heading „Du adresai Kaune“; Text Block. Map: Leaflet, Zoom 13, 2 žymekliai (7 skyriaus koordinatės), žymeklio spalva Extra Color 1. Kortelėje abu objektai: nuotrauka, adresas, <code>[elile_laisvos]</code>, 2 faktai.</td></tr>
           <tr><td>5. Bėgančios juostos</td><td>2 eilutės, Padding 0, klasės <code>elile-band elile-band--green</code> ir <code>elile-band elile-band--oasis</code></td><td>Scrolling Text: „K. Donelaičio g. 33, Jovarų g. 2, Kaunas“ ir „Biurai, Sandėliai, Automobilių aikštelės, Visos komunikacijos“; greitis lėtas; kryptys priešingos.</td></tr>
-          <tr><td>6. Privalumai</td><td>Padding 8 %; Inner Row: 1/2 + 1/2 (2 × 2)</td><td>H6 „Nuomininkams“, Split Line Heading, Text Block. Kolonos su Border Radius 28 ir Padding 32: nuotrauka su gradientu (tvarka), turkio Oasis (komunikacijos), balta su rėmeliu (aikštelės), žalia Green Monochrome (be tarpininkų), nuotrauka (sandėliai).</td></tr>
-          <tr><td>7. Kauno juosta</td><td>Background Image, Parallax Background: On (Medium), Color Overlay #0F1B2D 10 % → 90 %, Padding top 22 %</td><td>Split Line Heading H2 (baltas), Text Block, Inner Row 4 × 1/4: Milestone 90 m, 290 m, 0,5 km; ketvirtoje Text Block <code>[elile_laisvos forma="skaicius"]</code>.</td></tr>
+          <tr><td>6. Privalumai</td><td>Padding 8 %; Inner Row: 1/2 + 1/2 (2 × 2)</td><td>H6 „Nuomininkams“, Split Line Heading „Jūs dirbate, pastatais rūpinamės mes“, Text Block. Kolonos su Border Radius 28 ir Padding 32: nuotrauka su gradientu (visus rūpesčius sprendžiame mes), turkio Oasis (jokių paslėptų mokesčių, paslaugos savikaina), balta su rėmeliu (tikslios sąskaitos, automatizuota apskaita), žalia Green Monochrome (be tarpininkų), nuotrauka (biurai ir sandėliai).</td></tr>
+          <tr><td>7. Apie mus (Kauno juosta)</td><td>Background Image, Parallax Background: On (Medium), Color Overlay #0F1B2D 10 % → 90 %, Padding top 22 %</td><td>Inkaras <code>apie</code>. H6 „Apie mus“, Split Line Heading H2 (baltas) „Patalpas nuomojame ir prižiūrime nuo 2005 metų“, Text Block (istorija), Inner Row 4 × 1/4: Milestone 20+ metų, ~7 000 m² valdomų patalpų (+3 000 m² naujame pastate), ~100 nuomos sutarčių; ketvirtoje Text Block <code>[elile_laisvos forma="skaicius"]</code>.</td></tr>
           <tr><td>8. Kaip išsinuomoti</td><td>Fonas #FFFFFF; Inner Row 4 × 1/4, klasė <code>elile-steps</code> (punktyrinė linija)</td><td>Icon (Border Circle, 68 px), H3, Text Block: Išsirinkite, Apžiūrėkite, Susitarkite, Įsikurkite.</td></tr>
           <tr><td>9. Pranešimai</td><td>Kolona su fonu Extra Color 2, radius 28, Padding 6 %; 7/12 + 5/12</td><td>Split Line Heading, Text Block, CF7 forma „Pranešimai“ (9 skyrius) arba MailPoet forma. Dešinėje: Image With Animation (Mask Reveal, Circle) ir Raw HTML pranešimo kortelė su Parallax Scroll.</td></tr>
           <tr><td>10. DUK</td><td>Fonas #FFFFFF; 4/12 (Sticky) + 8/12</td><td>Split Line Heading, Text Block, telefonas. Toggle Panels: Minimal Shadow, pirmas atidarytas, 6 klausimai iš maketo.</td></tr>

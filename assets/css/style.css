@@ -255,8 +255,7 @@ html.hide-example-tags .tag--example { display: none; }
 }
 .site-header__inner { display: flex; align-items: center; gap: 24px; height: 100%; }
 .logo { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); flex: none; }
-.logo svg { height: 34px; width: auto; }
-.logo__word { font: 700 27px/1 var(--f-display); letter-spacing: -.04em; }
+.logo__img { display: block; height: 40px; width: auto; }
 
 .nav { display: flex; align-items: center; gap: 2px; margin-left: auto; }
 .nav__link {
@@ -548,6 +547,7 @@ html.js [data-reveal-group].is-in .inline-img { transform: scale(1); }
   position: relative; overflow: hidden; isolation: isolate; border-radius: var(--r-lg); padding: clamp(24px, 2.4vw, 34px);
   display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; transition: transform .6s var(--ease), box-shadow .6s var(--ease);
 }
+.bento__cell { padding-top: calc(clamp(22px, 2.4vw, 32px) + 72px); }
 .bento__cell:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 .bento__cell h3 { font: 600 clamp(22px, 1.9vw, 28px)/1.15 var(--f-display); letter-spacing: -.02em; color: inherit; }
 .bento__cell p { font-size: 15.5px; line-height: 1.55; max-width: 30em; }
@@ -582,11 +582,13 @@ html.js [data-reveal-group].is-in .inline-img { transform: scale(1); }
     linear-gradient(180deg, rgba(15, 27, 45, .1) 0%, rgba(15, 27, 45, .42) 50%, rgba(15, 27, 45, .9) 100%);
 }
 .band__content { width: 100%; padding-block: clamp(64px, 8vw, 112px); }
-.band h2 { color: #fff; max-width: 13ch; }
+.band h2 { color: #fff; max-width: 20ch; }
 .band .lead { color: rgba(255, 255, 255, .86); margin-top: 18px; }
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: clamp(40px, 5vw, 64px); padding-top: 28px; border-top: 1px solid rgba(255, 255, 255, .24); }
 .stat__value { font: 600 clamp(44px, 5vw, 76px)/1 var(--f-display); letter-spacing: -.035em; color: #fff; }
 .stat__value em { font-style: normal; color: var(--oasis); }
+.stat__value small { font-size: .5em; margin-right: .06em; color: rgba(255, 255, 255, .72); vertical-align: .42em; font-weight: 600; }
+.eyebrow--light { color: #fff; }
 .stat__label { margin-top: 10px; font-size: 15px; line-height: 1.45; color: rgba(255, 255, 255, .8); max-width: 20em; }
 
 /* ---------- Kaip išsinuomoti ---------- */
@@ -1039,7 +1041,7 @@ body.has-mobile-bar .snackbar { bottom: 96px; }
   .mockbar__inner { flex-wrap: wrap; }
   .mockbar nav { margin-left: 0; width: 100%; order: 3; }
   .mockbar__btn { margin-left: auto; }
-  .logo svg { height: 30px; }
+  .logo__img { height: 34px; }
   .hero__badge { font-size: 13px; }
   .hero__actions { gap: 16px 20px; }
   .hero__media { aspect-ratio: 1 / 1.1; }
