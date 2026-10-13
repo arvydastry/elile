@@ -65,14 +65,24 @@
   const isFree = (u) => isShown(u) && !state.rented.has(u.id);
   const freeUnits = (objectId) => D.units
     .filter((u) => isFree(u) && (!objectId || u.object === objectId))
-    .sort((a, b) => b.updated.localeCompare(a.updated));
+    .sort((a, b) => (a.build ? 1 : 0) - (b.build ? 1 : 0) || b.updated.localeCompare(a.updated));   // statomos — po laisvų
   const freeCount = (objectId) => freeUnits(objectId).length;
   const routeUrl = (o) => `https://www.google.com/maps/dir/?api=1&destination=${o.lat},${o.lng}`;
 
   /* ---------- Šablonai ---------- */
-  const statusHTML = (u) => (u.from === 'Laisva dabar'
+  const statusHTML = (u) => (u.build ? `<span class="status status--build">${esc(u.from)}</span>` : u.from === 'Laisva dabar'
     ? '<span class="status">Laisva dabar</span>'
     : `<span class="status status--soon">${esc(u.from)}</span>`);
+  // Kaina: jei nenurodyta (pvz. statomos patalpos) — „Kaina sutartinė“
+  const priceHTML = (u) => (u.price ? `${fmtPrice(u.price)}/m² <small>+ PVM</small>` : 'Kaina sutartinė');
+  // „V“ → „V aukštas“; „I + antresolė“ lieka kaip yra; tuščias — nieko
+  const floorLabel = (u) => (!u.floor ? '' : /^([IVXL]+|\d+)$/.test(u.floor) ? `${u.floor} aukštas` : u.floor);
+  // Elektromobilių įkrovimas: tekstas iš stotelių skaičiaus, galios ir pastabos
+  const evText = (o) => (o.evCount
+    ? `Prie ${o.name} pastato veikia ${o.evCount} elektromobilių ${plural(o.evCount, ['įkrovimo stotelė', 'įkrovimo stotelės', 'įkrovimo stotelių'])} po ${o.evPower} su EU standarto (Type 2) jungtimis. Įkrauti gali nuomininkai ir jų klientai.${o.evNote ? ` ${o.evNote}` : ''}`
+    : `Jei jūsų komandai ar klientams aktualu įkrauti elektromobilius, aptarsime galimybę įrengti įkrovimo prieigą prie ${o.name} pastato.`);
+  const monthHTML = (u, cls) => (u.price && !u.noMonthly ? `<span class="${cls}">≈ ${monthly(u)} €/mėn.</span>` : '');
+  const drawing = (src) => (/\.(png|svg)(\?|$)/i.test(src) ? ' is-drawing' : '');
   const exampleTag = (u) => (u.example ? '<span class="tag tag--example" title="Pavyzdinė patalpa maketui">Pavyzdys</span>' : '');
   const objStatusHTML = (id) => {
     const n = freeCount(id);
@@ -84,18 +94,18 @@
     const o = objById(u.object);
     return `<article class="unit-card" data-unit="${u.id}" data-object="${u.object}" style="--i:${i}">
       <a class="unit-card__link" href="patalpa.html?id=${u.id}">
-        <div class="unit-card__media">
+        <div class="unit-card__media${drawing(u.photos[0])}">
           <img src="${u.photos[0]}" alt="${esc(unitAlt(u))}" loading="lazy" decoding="async">
           <span class="unit-card__go" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span>
         </div>
         <div class="unit-card__body">
           <div class="unit-card__top"><span class="tag">${esc(u.type)}</span>${statusHTML(u)}${exampleTag(u)}</div>
-          <h3 class="unit-card__title">${fmtArea(u.area)}<small>${u.floor} aukštas</small></h3>
+          <h3 class="unit-card__title">${fmtArea(u.area)}${floorLabel(u) ? `<small>${floorLabel(u)}</small>` : ''}</h3>
           <span class="unit-card__name">${esc(u.title)}</span>
           <span class="unit-card__addr"><i class="ph ph-map-pin" aria-hidden="true"></i>${esc(o.name)}, ${esc(o.city)}</span>
           <div class="unit-card__foot">
-            <span class="unit-card__price">${fmtPrice(u.price)}/m² <small>+ PVM</small></span>
-            <span class="unit-card__month">≈ ${monthly(u)} €/mėn.</span>
+            <span class="unit-card__price">${priceHTML(u)}</span>
+            ${monthHTML(u, 'unit-card__month')}
           </div>
         </div>
       </a>
@@ -105,14 +115,14 @@
   const rowCardHTML = (u, i = 0) => {
     const o = objById(u.object);
     return `<article class="row-card" data-unit="${u.id}" data-object="${u.object}" style="--i:${i}">
-      <div class="row-card__media"><img src="${u.photos[0]}" alt="${esc(unitAlt(u))}" loading="lazy" decoding="async"></div>
+      <div class="row-card__media${drawing(u.photos[0])}"><img src="${u.photos[0]}" alt="${esc(unitAlt(u))}" loading="lazy" decoding="async"></div>
       <div class="row-card__body">
         <div class="unit-card__top"><span class="tag">${esc(u.type)}</span>${statusHTML(u)}${exampleTag(u)}</div>
-        <h3 class="row-card__title"><strong>${fmtArea(u.area)}</strong><span>${esc(u.title)}, ${u.floor} aukštas</span></h3>
+        <h3 class="row-card__title"><strong>${fmtArea(u.area)}</strong><span>${esc(u.title)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''}</span></h3>
         <p class="row-card__sum">${esc(u.summary)}</p>
         <div class="row-card__foot">
-          <span class="unit-card__price">${fmtPrice(u.price)}/m² <small>+ PVM</small></span>
-          <span class="muted">≈ ${monthly(u)} €/mėn.</span>
+          <span class="unit-card__price">${priceHTML(u)}</span>
+          ${monthHTML(u, 'muted')}
           <a class="row-card__link" href="patalpa.html?id=${u.id}" aria-label="Peržiūrėti: ${esc(unitAlt(u))}"><span class="row-card__go" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span></a>
         </div>
       </div>
@@ -180,8 +190,8 @@
       <span>
         <span class="live-card__label">Naujausia laisva patalpa</span>
         <span class="live-card__title">${esc(u.title)}, ${fmtArea(u.area)}</span>
-        <span class="live-card__meta">${esc(o.name)}, ${u.floor} aukštas</span>
-        <span class="live-card__row"><span class="live-card__price">${fmtPrice(u.price)}/m² <small>+ PVM</small></span><span class="live-card__go" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span></span>
+        <span class="live-card__meta">${esc(o.name)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''}</span>
+        <span class="live-card__row"><span class="live-card__price">${priceHTML(u)}</span><span class="live-card__go" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span></span>
       </span>`;
   };
 
@@ -413,7 +423,7 @@
   /* ---------- Laisvų patalpų puslapis ---------- */
   const listingState = {
     object: objById(params.get('objektas')) ? params.get('objektas') : 'all',
-    type: 'all',
+    type: params.get('tipas') || 'all',
     area: 'all',
     sort: 'new'
   };
@@ -428,7 +438,7 @@
       .filter((u) => listingState.type === 'all' || u.type === listingState.type)
       .filter((u) => areaMatch(u, listingState.area));
     if (listingState.sort === 'area') list = list.sort((a, b) => a.area - b.area);
-    if (listingState.sort === 'price') list = list.sort((a, b) => a.price - b.price);
+    if (listingState.sort === 'price') list = list.sort((a, b) => (a.price || 1e9) - (b.price || 1e9));
     return list;
   };
   const filtersActive = () => listingState.type !== 'all' || listingState.area !== 'all';
@@ -606,12 +616,17 @@
       ${o.ev ? `<section class="section--tight">
         <div class="container">
           <div class="ev" data-reveal>
-            <div class="ev__media"><img src="https://images.pexels.com/photos/3846205/pexels-photo-3846205.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Elektromobilis įkraunamas prie įkrovimo stotelės" loading="lazy"></div>
+            <div class="ev__media"><img src="assets/img/elektromobilis.jpg" alt="Elektromobilis įkraunamas prie įkrovimo stotelės" loading="lazy"></div>
             <div class="ev__body">
               <span class="ev__icon"><i class="ph ph-charging-station"></i></span>
-              <h2>Elektromobilio įkrovimas prie pastato</h2>
-              <p>Jei jūsų komandai ar klientams aktualu įkrauti elektromobilius, aptarsime galimybę įrengti įkrovimo prieigą prie ${esc(o.name)} pastato.</p>
-              <p><a class="link-u" href="#kontaktai" data-prefill="Domina elektromobilio įkrovimo prieiga prie ${esc(o.name)} pastato.">Paklausti apie įkrovimą <i class="ph ph-arrow-right"></i></a></p>
+              <h2>Elektromobilių įkrovimas prie pastato</h2>
+              <p>${esc(evText(o))}</p>
+              ${o.evCount ? `<div class="mini-facts">
+                <div class="mini-fact"><i class="ph ph-charging-station" aria-hidden="true"></i><strong>${o.evCount}</strong><span>${plural(o.evCount, ['veikianti stotelė', 'veikiančios stotelės', 'veikiančių stotelių'])}</span></div>
+                ${o.evPlanned ? `<div class="mini-fact"><i class="ph ph-plus" aria-hidden="true"></i><strong>+${o.evPlanned}</strong><span>įrengiamos ir planuojamos</span></div>` : ''}
+                <div class="mini-fact"><i class="ph ph-lightning" aria-hidden="true"></i><strong>${esc(o.evPower)}</strong><span>galia, EU jungtys</span></div>
+              </div>` : ''}
+              <p><a class="link-u" href="#kontaktai" data-prefill="Domina elektromobilių įkrovimas prie ${esc(o.name)} pastato.">Paklausti apie įkrovimą <i class="ph ph-arrow-right"></i></a></p>
             </div>
           </div>
         </div>
@@ -673,11 +688,11 @@
             <div>
               <div class="unit-head__tags" data-reveal><span class="tag">${esc(u.type)}</span>${statusHTML(u)}${exampleTag(u)}</div>
               <h1 data-split>${esc(u.title)}, ${fmtArea(u.area)}</h1>
-              <p class="unit-head__addr" data-reveal style="--d:250ms"><i class="ph ph-map-pin" aria-hidden="true"></i>${esc(o.name)}, ${esc(o.city)}, ${u.floor} aukštas <a class="link-u" href="objektas.html?id=${o.id}">Apie pastatą <i class="ph ph-arrow-right"></i></a></p>
+              <p class="unit-head__addr" data-reveal style="--d:250ms"><i class="ph ph-map-pin" aria-hidden="true"></i>${esc(o.name)}, ${esc(o.city)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''} <a class="link-u" href="objektas.html?id=${o.id}">Apie pastatą <i class="ph ph-arrow-right"></i></a></p>
             </div>
             <div class="price-block" data-reveal style="--d:300ms">
-              <strong>${fmtPrice(u.price)}<small>/m² + PVM</small></strong>
-              <span>≈ ${monthly(u)} € per mėnesį + PVM</span>
+              ${u.price ? `<strong>${fmtPrice(u.price)}<small>/m² + PVM</small></strong>
+              ${u.noMonthly ? '<span>Kaina derinama pagal apimtį</span>' : `<span>≈ ${monthly(u)} € per mėnesį + PVM</span>`}` : '<strong>Kaina sutartinė</strong>'}
             </div>
           </div>
         </div>
@@ -686,15 +701,16 @@
       <section aria-label="Nuotraukos">
         <div class="container">
           <div class="gallery${gClass}" data-mask="up">
-            ${shown.map((src, i) => `<button class="gallery__item" type="button" data-lightbox="unit" data-index="${i}" data-src="${src}" aria-label="Didinti nuotrauką ${i + 1} iš ${n}"><img src="${src}" alt="${esc(unitAlt(u))}, nuotrauka ${i + 1}" ${i ? 'loading="lazy"' : ''}>${i === shown.length - 1 && n > 1 ? `<span class="gallery__more"><i class="ph ph-images"></i>Visos nuotraukos (${n})</span>` : ''}</button>`).join('')}
+            ${shown.map((src, i) => `<button class="gallery__item${drawing(src)}" type="button" data-lightbox="unit" data-index="${i}" data-src="${src}" aria-label="Didinti nuotrauką ${i + 1} iš ${n}"><img src="${src}" alt="${esc(unitAlt(u))}, nuotrauka ${i + 1}" ${i ? 'loading="lazy"' : ''}>${i === shown.length - 1 && n > 1 ? `<span class="gallery__more"><i class="ph ph-images"></i>Visos nuotraukos (${n})</span>` : ''}</button>`).join('')}
           </div>
         </div>
       </section>
 
       <div class="container unit-layout">
         <div class="unit-main">
+          ${u.video ? `<section class="unit-video" aria-label="${esc(u.videoTitle || 'Vaizdo įrašas')}"><h2 data-split>${esc(u.videoTitle || 'Vaizdo įrašas')}</h2><video controls muted playsinline preload="metadata" poster="${u.photos[0]}"><source src="${u.video}" type="video/mp4"></video></section>` : ''}
           <section aria-labelledby="apie">
-            <h2 id="apie" data-split>Apie patalpas</h2>
+            <h2 id="apie" data-split>${u.type === 'Teritorija' ? 'Apie teritoriją' : 'Apie patalpas'}</h2>
             <div class="spec-grid" style="margin-top:24px">
               ${u.specs.map((s, i) => `<div class="spec" data-reveal style="--d:${i * 60}ms"><i class="ph ${s.icon}" aria-hidden="true"></i><span>${esc(s.label)}</span><strong>${esc(s.value)}</strong></div>`).join('')}
             </div>
@@ -709,7 +725,7 @@
               <button role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">Apie pastatą</button>
             </div>
             <div class="tabs__panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
-              <div class="services">${o.services.map((s) => `<div class="service"><i class="ph ${s.icon}" aria-hidden="true"></i>${esc(s.label)}</div>`).join('')}</div>
+              <div class="services">${(u.services || o.services).map((s) => `<div class="service"><i class="ph ${s.icon}" aria-hidden="true"></i>${esc(s.label)}</div>`).join('')}</div>
             </div>
             <div class="tabs__panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
               <div class="unit-map" data-map="unit" data-object="${o.id}" aria-label="${esc(o.name)} žemėlapyje"></div>
@@ -724,22 +740,22 @@
           </section>
 
           ${o.ev ? `<div class="ev ev--compact" data-reveal>
-            <div class="ev__media"><img src="https://images.pexels.com/photos/3846205/pexels-photo-3846205.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy"></div>
+            <div class="ev__media"><img src="assets/img/elektromobilis.jpg" alt="" loading="lazy"></div>
             <div class="ev__body">
-              <h3>Reikia įkrauti elektromobilį?</h3>
-              <p>Jei nuomininkui aktualu, aptarsime galimybę prie pastato įrengti elektromobilio įkrovimo prieigą.</p>
-              <p><a class="link-u" href="#apziura" data-prefill="Domina elektromobilio įkrovimo prieiga.">Paklausti apie įkrovimą <i class="ph ph-arrow-right"></i></a></p>
+              <h3>${o.evCount ? 'Elektromobilių įkrovimas prie pastato' : 'Reikia įkrauti elektromobilį?'}</h3>
+              <p>${esc(evText(o))}</p>
+              <p><a class="link-u" href="#apziura" data-prefill="Domina elektromobilių įkrovimas prie ${esc(o.name)} pastato.">Paklausti apie įkrovimą <i class="ph ph-arrow-right"></i></a></p>
             </div>
           </div>` : ''}
         </div>
 
         <aside class="booking" id="apziura" aria-label="Užsakyti apžiūrą">
           <div class="booking__card">
-            <div class="booking__price"><strong>${fmtPrice(u.price)}</strong><small> /m² + PVM</small><span>≈ ${monthly(u)} € per mėnesį + PVM</span></div>
+            <div class="booking__price">${u.price ? `<strong>${fmtPrice(u.price)}</strong><small> /m² + PVM</small>${u.noMonthly ? '' : `<span>≈ ${monthly(u)} € per mėnesį + PVM</span>`}` : '<strong>Kaina sutartinė</strong>'}</div>
             <ul class="booking__list">
               <li><span>Plotas</span><strong>${fmtArea(u.area)}</strong></li>
-              <li><span>Aukštas</span><strong>${u.floor}</strong></li>
-              <li><span>Įsikelti</span><strong>${u.from === 'Laisva dabar' ? 'Nuo dabar' : esc(u.from)}</strong></li>
+              ${u.floor ? `<li><span>Aukštas</span><strong>${u.floor}</strong></li>` : ''}
+              <li><span>Įsikelti</span><strong>${u.build ? 'Baigus statybas' : u.from === 'Laisva dabar' ? 'Nuo dabar' : esc(u.from)}</strong></li>
             </ul>
             <form data-form="booking" novalidate>
               <input type="hidden" name="patalpa" value="${esc(unitAlt(u))}">
@@ -1215,7 +1231,7 @@
         const o = objById(u.object);
         const disabled = u.example && !state.examples;
         return `<div class="demo-row"${disabled ? ' style="opacity:.45"' : ''}>
-          <div class="demo-row__text"><strong>${esc(u.title)}, ${fmtArea(u.area)}</strong><span>${esc(o.name)}, ${u.floor} aukštas</span></div>
+          <div class="demo-row__text"><strong>${esc(u.title)}, ${fmtArea(u.area)}</strong><span>${esc(o.name)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''}</span></div>
           <span class="demo-row__badge${u.example ? ' demo-row__badge--ex' : ''}">${u.example ? 'Pavyzdys' : 'Tikra'}</span>
           <label class="switch"><input type="checkbox" data-demo-unit="${u.id}" ${state.rented.has(u.id) ? '' : 'checked'} ${disabled ? 'disabled' : ''} aria-label="${esc(u.title)} ${esc(o.name)}: laisva"><span></span></label>
         </div>`;
@@ -1275,6 +1291,8 @@
     renderListing(false);
     initHeader();
     initHeroVideo();
+    // kortelių vaizdo įrašai sukasi be garso; „sumažinto judesio“ režime sustabdomi (lieka viršelio nuotrauka)
+    if (reduceMotion) $$('[data-loop-video]').forEach((v) => { v.removeAttribute('autoplay'); v.pause(); });
     initToggles();
     initTabs();
     initForms();

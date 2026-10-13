@@ -7,12 +7,11 @@
   <meta name="description" content="Biuro ir sandėliavimo patalpų nuoma Kaune, K. Donelaičio g. 33 ir Jovarų g. 2. Laisvos patalpos, kainos, vieta žemėlapyje ir apžiūros užsakymas.">
   <meta name="robots" content="noindex">
   <link rel="icon" href="assets/img/favicon.svg?v=2" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Urbanist:wght@500;600;700&display=swap">
+  <link rel="preload" href="assets/fonts/urbanist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=9">
+  <link rel="stylesheet" href="assets/css/style.css?v=16">
   <link rel="preload" as="image" href="https://images.pexels.com/videos/8347240/pexels-photo-8347240.jpeg?auto=compress&cs=tinysrgb&w=1200">
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -123,11 +122,12 @@
     <!-- 2. Objektai: Architect (Text With Inline Images + Image With Animation su paralaksu) -->
     <section class="section section--white" id="objektai">
       <div class="container">
-        <h2 class="statement" data-reveal data-reveal-group>
-          Biurai <a href="objektas.html?id=donelaicio-33">pačiame Kauno centre</a>&nbsp;<span class="inline-img" style="--i:0;background-image:url('assets/img/objektai/donelaicio-33.jpg')" aria-hidden="true"></span>
-          ir sandėliai <a href="objektas.html?id=jovaru-2">prie Vakarinio aplinkkelio</a>&nbsp;<span class="inline-img" style="--i:1;background-image:url('assets/img/objektai/jovaru-2.jpg')" aria-hidden="true"></span>.
-          Du pastatai, vienas valdytojas.
-        </h2>
+        <h2 class="visually-hidden">Kodėl verta rinktis UAB „Elile“</h2>
+        <ul class="why">
+          <li class="why__item" data-reveal><span class="why__icon" aria-hidden="true"><i class="ph ph-shield-check"></i></span><p class="why__text">Patikimas nuomotojas, dirbantis jau 20+ metų</p></li>
+          <li class="why__item" data-reveal style="--d:110ms"><span class="why__icon" aria-hidden="true"><i class="ph ph-receipt"></i></span><p class="why__text">Pasirūpinsime visais klausimais, susijusiais su komunaliniais mokesčiais</p></li>
+          <li class="why__item" data-reveal style="--d:220ms"><span class="why__icon" aria-hidden="true"><i class="ph ph-scales"></i></span><p class="why__text">Skaidri, sąžininga kainų ir mokesčių politika</p></li>
+        </ul>
 
         <div class="objects-grid">
           <a class="object-card" href="objektas.html?id=donelaicio-33" data-reveal>
@@ -170,6 +170,76 @@
                 <div class="mini-fact"><i class="ph ph-road-horizon" aria-hidden="true"></i><strong>0,5 km</strong><span>iki aplinkkelio A5</span></div>
                 <div class="mini-fact"><i class="ph ph-truck" aria-hidden="true"></i><strong>Yra</strong><span>aikštelė vilkikams</span></div>
                 <div class="mini-fact"><i class="ph ph-package" aria-hidden="true"></i><strong>Yra</strong><span>sandėlių patalpos</span></div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Statomi stock office pastatai (buvęs blokas „Naujiena · statoma“) -->
+          <a class="object-card" href="patalpos.html?objektas=jovaru-2&amp;tipas=Stock%20office" data-reveal>
+            <div class="object-card__media" data-mask="up">
+              <div class="px" data-px="0.07"><img src="assets/img/stock/vizualizacija-1.jpg" alt="Naujas statomas objektas: stock office pastatai Jovarų g. 2 — vizualizacija" loading="lazy"></div>
+              <span class="status status--build">Statoma · rezervuokite</span>
+              <span class="object-card__caption">Vizualizacija · fonas: Google Earth</span>
+            </div>
+            <div class="object-card__body">
+              <div class="object-card__row">
+                <div>
+                  <h3 class="object-card__title">Naujas statomas objektas</h3>
+                  <p class="object-card__sub">Jovarų g. 2, Kaunas. Du stock office pastatai</p>
+                </div>
+                <span class="round-go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span>
+              </div>
+              <p class="object-card__lead">Statome du pastatus su 7 stock office blokais. Kiekviename bloke po 72 m² pirmame ir antrame aukštuose pritaikyta biurui ar pardavimams, likusi dalis — prekybos salė ar sandėlis. Blokus jau galima rezervuoti.</p>
+              <div class="mini-facts">
+                <div class="mini-fact"><i class="ph ph-buildings" aria-hidden="true"></i><strong>7</strong><span>stock office blokai</span></div>
+                <div class="mini-fact"><i class="ph ph-frame-corners" aria-hidden="true"></i><strong>360–504 m²</strong><span>vieno bloko plotas</span></div>
+                <div class="mini-fact"><i class="ph ph-briefcase" aria-hidden="true"></i><strong>2 × 72 m²</strong><span>biurui ar pardavimams</span></div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Lauko teritorija Jovarų g. 2 -->
+          <a class="object-card" href="patalpa.html?id=jovaru-2-sklypas" data-reveal style="--d:120ms">
+            <div class="object-card__media" data-mask="up" style="--d:120ms">
+              <div class="px" data-px="0.07"><img src="assets/img/sklypas/5.jpg" alt="Sklypas jūsų reikmėms: laisva teritorija Jovarų g. 2 iš aukštai" loading="lazy"></div>
+              <span class="status">Laisva dabar</span>
+            </div>
+            <div class="object-card__body">
+              <div class="object-card__row">
+                <div>
+                  <h3 class="object-card__title">Sklypas jūsų reikmėms</h3>
+                  <p class="object-card__sub">Jovarų g. 2, Kaunas. Parkavimas, automobilių prekyba, sandėliavimas</p>
+                </div>
+                <span class="round-go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span>
+              </div>
+              <p class="object-card__lead">Apie 2&nbsp;500&nbsp;m² asfaltuota teritorija su pažymėtomis parkavimo vietomis. Nuomojama visa arba dalimis, kaina priklauso nuo apimties.</p>
+              <div class="mini-facts">
+                <div class="mini-fact"><i class="ph ph-frame-corners" aria-hidden="true"></i><strong>~2&nbsp;500&nbsp;m²</strong><span>bendras plotas</span></div>
+                <div class="mini-fact"><i class="ph ph-car" aria-hidden="true"></i><strong>25&nbsp;€/mėn.</strong><span>parkavimo vieta + PVM</span></div>
+                <div class="mini-fact"><i class="ph ph-map-trifold" aria-hidden="true"></i><strong>0,75&nbsp;€/m²</strong><span>teritorija + PVM</span></div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Elektromobilių įkrovimas (stotelių skaičius — iš UAB „Elile“; nuotrauka asociatyvi, Pexels) -->
+          <a class="object-card" href="#kontaktai" data-prefill="Domina elektromobilių įkrovimas. " data-reveal>
+            <div class="object-card__media" data-mask="up">
+              <div class="px" data-px="0.07"><img src="assets/img/elektromobilis.jpg" alt="Elektromobilis įkraunamas prie įkrovimo stotelės" loading="lazy"></div>
+              <span class="status">12 stotelių veikia</span>
+            </div>
+            <div class="object-card__body">
+              <div class="object-card__row">
+                <div>
+                  <h3 class="object-card__title">Elektromobilių įkrovimo stotelės jūsų patogumui</h3>
+                  <p class="object-card__sub">K. Donelaičio g. 33 ir Jovarų g. 2, Kaunas</p>
+                </div>
+                <span class="round-go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span>
+              </div>
+              <p class="object-card__lead">Prie abiejų pastatų veikia 12 elektromobilių įkrovimo stotelių po 11&nbsp;kW su EU standarto jungtimis. Įkrauti gali nuomininkai ir jų klientai, o naujos stotelės K.&nbsp;Donelaičio g.&nbsp;33 bus viešos prieigos.</p>
+              <div class="mini-facts">
+                <div class="mini-fact"><i class="ph ph-charging-station" aria-hidden="true"></i><strong>12</strong><span>veikiančių stotelių</span></div>
+                <div class="mini-fact"><i class="ph ph-plus" aria-hidden="true"></i><strong>+4</strong><span>įrengiamos ir planuojamos</span></div>
+                <div class="mini-fact"><i class="ph ph-lightning" aria-hidden="true"></i><strong>11&nbsp;kW</strong><span>galia, EU jungtys</span></div>
               </div>
             </div>
           </a>
@@ -276,7 +346,7 @@
             <div class="bento__bg" style="background-image:url('https://images.pexels.com/photos/36122954/pexels-photo-36122954.jpeg?auto=compress&cs=tinysrgb&w=1000')" role="img" aria-label="Sandėlio patalpos su stelažais"></div>
             <span class="bento__icon" aria-hidden="true"><i class="ph ph-package"></i></span>
             <h3>Biurai ir sandėliai</h3>
-            <p>Visos komunikacijos ir automobilių aikštelės. Jovarų g. 2 — sandėliai ir aikštelė sunkiajam transportui.</p>
+            <p>Visos komunikacijos ir automobilių aikštelės. Jovarų g. 2 — sandėliai, aikštelė sunkiajam transportui ir nauji stock office blokai.</p>
           </article>
         </div>
       </div>
@@ -291,7 +361,7 @@
         <p class="lead" data-reveal>Veiklą pradėjome 2005 metais, vėliau ankstesnę įmonę prijungėme prie UAB „Elile“. Anksčiau turėjome ir tris pastatus kituose miestuose, todėl gerai žinome, ko reikia, kad nuomininkams būtų patogu.</p>
         <div class="stats">
           <div class="stat" data-reveal><div class="stat__value"><span data-count-to="20">20</span>+</div><p class="stat__label">metų patirties nuomojant ir valdant patalpas</p></div>
-          <div class="stat" data-reveal style="--d:100ms"><div class="stat__value"><small>~</small><span data-count-to="7000">7&nbsp;000</span>&nbsp;m²</div><p class="stat__label">valdomų patalpų, o su nauju pastatu — dar 3&nbsp;000&nbsp;m²</p></div>
+          <div class="stat" data-reveal style="--d:100ms"><div class="stat__value"><small>~</small><span data-count-to="7000">7&nbsp;000</span>&nbsp;m²</div><p class="stat__label">valdomų patalpų, o Jovarų g. 2 statomi stock office pastatai — dar ~2&nbsp;800&nbsp;m²</p></div>
           <div class="stat" data-reveal style="--d:200ms"><div class="stat__value"><small>~</small><span data-count-to="100">100</span></div><p class="stat__label">nuolat administruojamų nuomos sutarčių</p></div>
           <div class="stat" data-reveal style="--d:300ms"><div class="stat__value"><em data-count="all">5</em></div><p class="stat__label"><span data-count="all" data-count-format="word">laisvos patalpos</span> šiandien</p></div>
         </div>
@@ -365,6 +435,10 @@
           <div class="toggle">
             <button class="toggle__btn" type="button">Kas sugedo — į ką kreiptis?<span class="toggle__sign" aria-hidden="true"></span></button>
             <div class="toggle__panel"><div class="toggle__inner"><p>Tiesiai į mus: paskambinkite arba parašykite. Meistrų ar aptarnavimo įmonių ieškoti nereikia — patys suorganizuosime remontą ar paslaugą ir pasirūpinsime, kad darbas būtų atliktas kokybiškai ir už gerą kainą.</p></div></div>
+          </div>
+          <div class="toggle">
+            <button class="toggle__btn" type="button">Kas yra stock office patalpos?<span class="toggle__sign" aria-hidden="true"></span></button>
+            <div class="toggle__panel"><div class="toggle__inner"><p>Tai viena patalpa biurui, prekybai ir sandėliavimui. Jovarų g. 2 statomuose blokuose po 72&nbsp;m² pirmame ir antrame aukštuose pritaikyta biurui ar pardavimams, o likusi dalis — prekybos salė ar sandėlis su pramoniniais vartais sunkiajam transportui. Blokai po 360 ir 504&nbsp;m², juos jau galima rezervuoti.</p></div></div>
           </div>
           <div class="toggle">
             <button class="toggle__btn" type="button">Kur statyti automobilį?<span class="toggle__sign" aria-hidden="true"></span></button>
@@ -458,7 +532,7 @@
   <button class="demo-fab" type="button" data-demo-open><i class="ph ph-sliders-horizontal" aria-hidden="true"></i>Patalpų valdymas</button>
 
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <script src="assets/js/data.js?v=9" defer></script>
-  <script src="assets/js/main.js?v=9" defer></script>
+  <script src="assets/js/data.js?v=15" defer></script>
+  <script src="assets/js/main.js?v=14" defer></script>
 </body>
 </html>

@@ -7,12 +7,11 @@
   <meta name="description" content="Laisvų biuro ir sandėliavimo patalpų sąrašas Kaune, K. Donelaičio g. 33 ir Jovarų g. 2: plotas, aukštas, kaina ir vieta žemėlapyje.">
   <meta name="robots" content="noindex">
   <link rel="icon" href="assets/img/favicon.svg?v=2" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Urbanist:wght@500;600;700&display=swap">
+  <link rel="preload" href="assets/fonts/urbanist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=9">
+  <link rel="stylesheet" href="assets/css/style.css?v=16">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -117,7 +116,7 @@
           <button type="button" data-value="jovaru-2" aria-pressed="false">Jovarų g. 2 <span class="chip__count">2</span></button>
         </div>
         <label class="select-pill"><span class="visually-hidden">Paskirtis</span>
-          <select data-listing="type"><option value="all">Visa paskirtis</option><option value="Biuras">Biuras</option><option value="Paslaugos">Paslaugos</option><option value="Sandėlis">Sandėlis</option></select></label>
+          <select data-listing="type"><option value="all">Visa paskirtis</option><option value="Biuras">Biuras</option><option value="Paslaugos">Paslaugos</option><option value="Sandėlis">Sandėlis</option><option value="Stock office">Stock office</option><option value="Teritorija">Teritorija</option></select></label>
         <label class="select-pill"><span class="visually-hidden">Plotas</span>
           <select data-listing="area"><option value="all">Bet koks plotas</option><option value="lt50">Iki 50 m²</option><option value="50-150">50-150 m²</option><option value="gt150">Daugiau nei 150 m²</option></select></label>
         <label class="select-pill"><span class="visually-hidden">Rikiavimas</span>
@@ -235,7 +234,7 @@
   <button class="demo-fab" type="button" data-demo-open><i class="ph ph-sliders-horizontal" aria-hidden="true"></i>Patalpų valdymas</button>
 
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <script src="assets/js/data.js?v=9" defer></script>
-  <script src="assets/js/main.js?v=9" defer></script>
+  <script src="assets/js/data.js?v=15" defer></script>
+  <script src="assets/js/main.js?v=14" defer></script>
 </body>
 </html>
