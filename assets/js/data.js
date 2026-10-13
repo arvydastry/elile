@@ -48,7 +48,8 @@ window.ELILE = {
         { icon: 'ph-broom', label: 'Teritorijos ir bendrų patalpų priežiūra' },
         { icon: 'ph-wifi-high', label: 'Ryšių įvadai' },
         { icon: 'ph-car', label: 'Lengvųjų automobilių aikštelė' },
-        { icon: 'ph-charging-station', label: 'Elektromobilių įkrovimas' }
+        { icon: 'ph-charging-station', label: 'Elektromobilių įkrovimas' },
+        { icon: 'ph-package', label: 'Paštomatas prie pastato' }
       ],
       poi: [
         { name: 'Gedimino g. stotelė', note: 'autobusai ir troleibusai', icon: 'ph-bus', lat: 54.898723, lng: 23.9198855 },
@@ -61,28 +62,40 @@ window.ELILE = {
       ],
       ev: true,
       // stotelės: skaičius ir galia — iš UAB „Elile“ (2026-10)
-      evCount: 4, evPlanned: 4, evPower: '11 kW', evNote: 'Dar 2 stotelės įrengiamos ir 2 planuojamos — jos bus viešos prieigos.'
+      evPhoto: 'assets/img/ev-stotele-donelaicio-33.jpg',
+      evCount: 4, evPlanned: 4, evPower: '11 kW', evNote: 'Jau įrengtos ir viešos prieigos stotelės, o dar 2 įrengiamos ir 2 planuojamos.',
+      // bendradarbiavimas su LP EXPRESS (UAB „Elile“, 2026-10)
+      perk: {
+        title: 'LP EXPRESS paštomatas prie pastato',
+        text: 'K. Donelaičio g. 33 bendradarbiaujame su LP EXPRESS: paštomatas stovi čia pat, todėl jūsų siuntinys atkeliaus beveik iki durų. Pigiau, nereikės laukti kurjerio, o siuntinį atsiimsite bet kada.',
+        photo: 'assets/img/lp-express-pastomatas.jpg',
+        facts: [
+          { icon: 'ph-map-pin', value: 'Prie durų', label: 'paštomatas šalia pastato' },
+          { icon: 'ph-receipt', value: 'Pigiau', label: 'nei pristatymas kurjeriu' },
+          { icon: 'ph-clock', value: 'Bet kada', label: 'atsiimsite siuntinį' }
+        ]
+      }
     },
     {
       id: 'jovaru-2',
       name: 'Jovarų g. 2',
       city: 'Kaunas',
-      district: 'Veršvai, Vilijampolė',
+      district: 'Vilijampolė',
       zip: 'LT-47190',
-      kind: 'Biurai, sandėliai ir stock office',
+      kind: 'Biurai, prekyba ir sandėliai',
       lat: 54.9103563,
       lng: 23.8417997,
       photo: 'assets/img/objektai/jovaru-2.jpg',
-      lead: 'Biurai ir sandėliai Veršvuose, prie Raudondvario plento ir Vakarinio aplinkkelio (A5). Sklype statomi du nauji stock office pastatai: 7 blokai, juos jau galima rezervuoti.',
+      lead: 'Biuro, prekybinės ir sandėliavimo patalpos Vilijampolėje, prie Raudondvario plento ir Vakarinio aplinkkelio (A5). Teritorijoje statomi du nauji prekybos paskirties pastatai: 7 blokai, juos jau galima rezervuoti.',
       about: [
         'Pastatas patogus įmonėms, kurioms svarbi logistika: iki Raudondvario plento apie 0,3 km, iki Vakarinio aplinkkelio (A5) apie 0,5 km.',
         'Aikštelėje telpa lengvieji automobiliai ir sunkusis transportas. Be biurų, nuomojamos ir sandėliavimo patalpos.',
-        'Sklype statomi du nauji stock office pastatai: 7 blokai po 360 ir 504 m², kartu apie 2 800 m². Kiekviename bloke po 72 m² pirmame ir antrame (antresolės) aukštuose pritaikyta biurui ar pardavimams, likusi dalis — prekybos salė ar sandėlis su pramoninėmis šlifuoto betono grindimis ir vartais sunkiajam transportui. Blokus jau galima rezervuoti.'
+        'Teritorijoje statomi du nauji prekybos paskirties pastatai: 7 blokai po 360 ir 504 m², kartu apie 2 800 m². Kiekviename bloke po 72 m² pirmame ir antrame (antresolės) aukštuose pritaikyta biurui ar pardavimams, likusi dalis — prekybos salė ar sandėlis su pramoninėmis šlifuoto betono grindimis ir vartais sunkiajam transportui. Blokus jau galima rezervuoti.'
       ],
       highlights: [
         { icon: 'ph-road-horizon', value: '0,5 km', label: 'iki Vakarinio aplinkkelio (A5)' },
         { icon: 'ph-truck', value: 'Yra', label: 'aikštelė sunkiajam transportui' },
-        { icon: 'ph-buildings', value: '7', label: 'nauji stock office blokai (statoma)' }
+        { icon: 'ph-buildings', value: '7', label: 'nauji prekybos patalpų blokai (statoma)' }
       ],
       services: [
         { icon: 'ph-lightning', label: 'Elektra' },
@@ -104,7 +117,7 @@ window.ELILE = {
         { name: 'Kauno senamiestis', note: 'Rotušės aikštė', icon: 'ph-map-pin', lat: 54.8968586, lng: 23.8858991 }
       ],
       ev: true,
-      evCount: 8, evPlanned: 0, evPower: '11 kW', evNote: 'Baigus statybas stotelės bus perkeltos prie naujų stock office pastatų.'
+      evCount: 8, evPlanned: 0, evPower: '11 kW', evNote: 'Baigus statybas stotelės bus perkeltos prie naujų prekybos pastatų.'
     }
   ],
 
@@ -241,18 +254,18 @@ window.ELILE = {
       ]
     },
     {
-      id: 'jovaru-2-sklypas',
+      id: 'jovaru-2-teritorija',
       object: 'jovaru-2',
       type: 'Teritorija',
-      title: 'Sklypas jūsų reikmėms',
+      title: 'Teritorija arba parkavimo vietos',
       area: 2500,
       floor: '',
       price: 0.75,
       noMonthly: true,
       from: 'Laisva dabar',
       updated: '2026-10-13',
-      photos: ['assets/img/sklypas/5.jpg', 'assets/img/sklypas/2.jpg', 'assets/img/sklypas/1.jpg', 'assets/img/sklypas/6.jpg', 'assets/img/sklypas/7.jpg', 'assets/img/sklypas/3.jpg', 'assets/img/sklypas/4.jpg', 'assets/img/sklypas/8.jpg'],
-      video: 'assets/video/sklypas.mp4?v=2',
+      photos: ['assets/img/teritorija/5.jpg', 'assets/img/teritorija/2.jpg', 'assets/img/teritorija/1.jpg', 'assets/img/teritorija/6.jpg', 'assets/img/teritorija/7.jpg', 'assets/img/teritorija/3.jpg', 'assets/img/teritorija/4.jpg', 'assets/img/teritorija/8.jpg'],
+      video: 'assets/video/teritorija.mp4',
       videoTitle: 'Teritorija iš oro',
       summary: 'Teritorija automobilių parkavimui, automobilių prekybos aikštelei ar sandėliavimui. Nuomojama visa arba dalimis.',
       description: [
@@ -274,11 +287,11 @@ window.ELILE = {
       ]
     },
     {
-      id: 'stock-office-blokas-1',
+      id: 'prekyba-blokas-1',
       object: 'jovaru-2',
       build: true,
-      type: 'Stock office',
-      title: 'Stock office, blokas 1',
+      type: 'Prekyba',
+      title: 'Prekybos patalpos, blokas 1',
       area: 360,
       floor: 'I + antresolė',
       price: 0,
@@ -289,7 +302,7 @@ window.ELILE = {
       videoTitle: 'Statybų eiga, 2026 m. spalis',
       summary: 'Blokas 1 iš 7: 288 m² pirmame aukšte ir 72 m² antresolė. Priekyje biuras ar parduotuvė, gale prekybos salė ar sandėlis.',
       description: [
-        'Naujame stock office pastate Jovarų g. 2 statomas blokas Nr. 1: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
+        'Naujame prekybos paskirties pastate Jovarų g. 2 statomas blokas Nr. 1: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
         'Priekinėje dalyje pirmame ir antrame aukštuose po 72 m² pritaikyta biurui ar pardavimams, čia galima įrengti darbo vietas. Pagal pastato baigtumo aprašą bus įrengta laiptinė į antresolę, elektros instaliacija, apšvietimas ir interneto įvadai.',
         'Likusi patalpos dalis — prekybos salė ar sandėlis: pramoninės šlifuoto betono grindys, pramoniniai vartai sunkiajam transportui, šildymas, vėdinimas ir kondicionavimas.',
         'Patalpą jau galima rezervuoti: susisiekite, aptarsime sąlygas ir įsikėlimo laiką.'
@@ -313,11 +326,11 @@ window.ELILE = {
       ]
     },
     {
-      id: 'stock-office-blokas-2',
+      id: 'prekyba-blokas-2',
       object: 'jovaru-2',
       build: true,
-      type: 'Stock office',
-      title: 'Stock office, blokas 2',
+      type: 'Prekyba',
+      title: 'Prekybos patalpos, blokas 2',
       area: 360,
       floor: 'I + antresolė',
       price: 0,
@@ -328,7 +341,7 @@ window.ELILE = {
       videoTitle: 'Statybų eiga, 2026 m. spalis',
       summary: 'Blokas 2 iš 7: 288 m² pirmame aukšte ir 72 m² antresolė. Priekyje biuras ar parduotuvė, gale prekybos salė ar sandėlis.',
       description: [
-        'Naujame stock office pastate Jovarų g. 2 statomas blokas Nr. 2: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
+        'Naujame prekybos paskirties pastate Jovarų g. 2 statomas blokas Nr. 2: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
         'Priekinėje dalyje pirmame ir antrame aukštuose po 72 m² pritaikyta biurui ar pardavimams, čia galima įrengti darbo vietas. Pagal pastato baigtumo aprašą bus įrengta laiptinė į antresolę, elektros instaliacija, apšvietimas ir interneto įvadai.',
         'Likusi patalpos dalis — prekybos salė ar sandėlis: pramoninės šlifuoto betono grindys, pramoniniai vartai sunkiajam transportui, šildymas, vėdinimas ir kondicionavimas.',
         'Patalpą jau galima rezervuoti: susisiekite, aptarsime sąlygas ir įsikėlimo laiką.'
@@ -352,11 +365,11 @@ window.ELILE = {
       ]
     },
     {
-      id: 'stock-office-blokas-3',
+      id: 'prekyba-blokas-3',
       object: 'jovaru-2',
       build: true,
-      type: 'Stock office',
-      title: 'Stock office, blokas 3',
+      type: 'Prekyba',
+      title: 'Prekybos patalpos, blokas 3',
       area: 360,
       floor: 'I + antresolė',
       price: 0,
@@ -367,7 +380,7 @@ window.ELILE = {
       videoTitle: 'Statybų eiga, 2026 m. spalis',
       summary: 'Blokas 3 iš 7: 288 m² pirmame aukšte ir 72 m² antresolė. Priekyje biuras ar parduotuvė, gale prekybos salė ar sandėlis.',
       description: [
-        'Naujame stock office pastate Jovarų g. 2 statomas blokas Nr. 3: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
+        'Naujame prekybos paskirties pastate Jovarų g. 2 statomas blokas Nr. 3: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
         'Priekinėje dalyje pirmame ir antrame aukštuose po 72 m² pritaikyta biurui ar pardavimams, čia galima įrengti darbo vietas. Pagal pastato baigtumo aprašą bus įrengta laiptinė į antresolę, elektros instaliacija, apšvietimas ir interneto įvadai.',
         'Likusi patalpos dalis — prekybos salė ar sandėlis: pramoninės šlifuoto betono grindys, pramoniniai vartai sunkiajam transportui, šildymas, vėdinimas ir kondicionavimas.',
         'Patalpą jau galima rezervuoti: susisiekite, aptarsime sąlygas ir įsikėlimo laiką.'
@@ -391,11 +404,11 @@ window.ELILE = {
       ]
     },
     {
-      id: 'stock-office-blokas-4',
+      id: 'prekyba-blokas-4',
       object: 'jovaru-2',
       build: true,
-      type: 'Stock office',
-      title: 'Stock office, blokas 4',
+      type: 'Prekyba',
+      title: 'Prekybos patalpos, blokas 4',
       area: 360,
       floor: 'I + antresolė',
       price: 0,
@@ -406,7 +419,7 @@ window.ELILE = {
       videoTitle: 'Statybų eiga, 2026 m. spalis',
       summary: 'Blokas 4 iš 7: 288 m² pirmame aukšte ir 72 m² antresolė. Priekyje biuras ar parduotuvė, gale prekybos salė ar sandėlis.',
       description: [
-        'Naujame stock office pastate Jovarų g. 2 statomas blokas Nr. 4: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
+        'Naujame prekybos paskirties pastate Jovarų g. 2 statomas blokas Nr. 4: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
         'Priekinėje dalyje pirmame ir antrame aukštuose po 72 m² pritaikyta biurui ar pardavimams, čia galima įrengti darbo vietas. Pagal pastato baigtumo aprašą bus įrengta laiptinė į antresolę, elektros instaliacija, apšvietimas ir interneto įvadai.',
         'Likusi patalpos dalis — prekybos salė ar sandėlis: pramoninės šlifuoto betono grindys, pramoniniai vartai sunkiajam transportui, šildymas, vėdinimas ir kondicionavimas.',
         'Patalpą jau galima rezervuoti: susisiekite, aptarsime sąlygas ir įsikėlimo laiką.'
@@ -430,11 +443,11 @@ window.ELILE = {
       ]
     },
     {
-      id: 'stock-office-blokas-5',
+      id: 'prekyba-blokas-5',
       object: 'jovaru-2',
       build: true,
-      type: 'Stock office',
-      title: 'Stock office, blokas 5',
+      type: 'Prekyba',
+      title: 'Prekybos patalpos, blokas 5',
       area: 360,
       floor: 'I + antresolė',
       price: 0,
@@ -445,7 +458,7 @@ window.ELILE = {
       videoTitle: 'Statybų eiga, 2026 m. spalis',
       summary: 'Blokas 5 iš 7: 288 m² pirmame aukšte ir 72 m² antresolė. Priekyje biuras ar parduotuvė, gale prekybos salė ar sandėlis.',
       description: [
-        'Naujame stock office pastate Jovarų g. 2 statomas blokas Nr. 5: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
+        'Naujame prekybos paskirties pastate Jovarų g. 2 statomas blokas Nr. 5: 288 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 360 m².',
         'Priekinėje dalyje pirmame ir antrame aukštuose po 72 m² pritaikyta biurui ar pardavimams, čia galima įrengti darbo vietas. Pagal pastato baigtumo aprašą bus įrengta laiptinė į antresolę, elektros instaliacija, apšvietimas ir interneto įvadai.',
         'Likusi patalpos dalis — prekybos salė ar sandėlis: pramoninės šlifuoto betono grindys, pramoniniai vartai sunkiajam transportui, šildymas, vėdinimas ir kondicionavimas.',
         'Patalpą jau galima rezervuoti: susisiekite, aptarsime sąlygas ir įsikėlimo laiką.'
@@ -469,11 +482,11 @@ window.ELILE = {
       ]
     },
     {
-      id: 'stock-office-blokas-6',
+      id: 'prekyba-blokas-6',
       object: 'jovaru-2',
       build: true,
-      type: 'Stock office',
-      title: 'Stock office, blokas 6',
+      type: 'Prekyba',
+      title: 'Prekybos patalpos, blokas 6',
       area: 504,
       floor: 'I + antresolė',
       price: 0,
@@ -484,7 +497,7 @@ window.ELILE = {
       videoTitle: 'Statybų eiga, 2026 m. spalis',
       summary: 'Blokas 6 iš 7: 432 m² pirmame aukšte ir 72 m² antresolė. Priekyje biuras ar parduotuvė, gale prekybos salė ar sandėlis.',
       description: [
-        'Naujame stock office pastate Jovarų g. 2 statomas blokas Nr. 6: 432 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 504 m².',
+        'Naujame prekybos paskirties pastate Jovarų g. 2 statomas blokas Nr. 6: 432 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 504 m².',
         'Priekinėje dalyje pirmame ir antrame aukštuose po 72 m² pritaikyta biurui ar pardavimams, čia galima įrengti darbo vietas. Pagal pastato baigtumo aprašą bus įrengta laiptinė į antresolę, elektros instaliacija, apšvietimas ir interneto įvadai.',
         'Likusi patalpos dalis — prekybos salė ar sandėlis: pramoninės šlifuoto betono grindys, pramoniniai vartai sunkiajam transportui, šildymas, vėdinimas ir kondicionavimas.',
         'Patalpą jau galima rezervuoti: susisiekite, aptarsime sąlygas ir įsikėlimo laiką.'
@@ -508,11 +521,11 @@ window.ELILE = {
       ]
     },
     {
-      id: 'stock-office-blokas-7',
+      id: 'prekyba-blokas-7',
       object: 'jovaru-2',
       build: true,
-      type: 'Stock office',
-      title: 'Stock office, blokas 7',
+      type: 'Prekyba',
+      title: 'Prekybos patalpos, blokas 7',
       area: 504,
       floor: 'I + antresolė',
       price: 0,
@@ -523,7 +536,7 @@ window.ELILE = {
       videoTitle: 'Statybų eiga, 2026 m. spalis',
       summary: 'Blokas 7 iš 7: 432 m² pirmame aukšte ir 72 m² antresolė. Priekyje biuras ar parduotuvė, gale prekybos salė ar sandėlis.',
       description: [
-        'Naujame stock office pastate Jovarų g. 2 statomas blokas Nr. 7: 432 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 504 m².',
+        'Naujame prekybos paskirties pastate Jovarų g. 2 statomas blokas Nr. 7: 432 m² pirmame aukšte ir 72 m² antresolė antrame aukšte, iš viso 504 m².',
         'Priekinėje dalyje pirmame ir antrame aukštuose po 72 m² pritaikyta biurui ar pardavimams, čia galima įrengti darbo vietas. Pagal pastato baigtumo aprašą bus įrengta laiptinė į antresolę, elektros instaliacija, apšvietimas ir interneto įvadai.',
         'Likusi patalpos dalis — prekybos salė ar sandėlis: pramoninės šlifuoto betono grindys, pramoniniai vartai sunkiajam transportui, šildymas, vėdinimas ir kondicionavimas.',
         'Patalpą jau galima rezervuoti: susisiekite, aptarsime sąlygas ir įsikėlimo laiką.'

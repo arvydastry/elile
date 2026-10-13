@@ -39,6 +39,8 @@
   const nf1 = new Intl.NumberFormat('lt-LT', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const nf2 = new Intl.NumberFormat('lt-LT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const fmtArea = (a) => (Number.isInteger(a) ? nf0.format(a) : nf2.format(a)) + ' m²';
+  // teritorija nuomojama ir dalimis, todėl plotas — „iki …“
+  const unitArea = (u) => (u.type === 'Teritorija' ? 'iki ' : '') + fmtArea(u.area);
   const fmtPrice = (p) => nf2.format(p) + ' €';
   const monthly = (u) => nf0.format(Math.round(u.area * u.price));
   const plural = (n, forms) => {
@@ -88,7 +90,7 @@
     const n = freeCount(id);
     return n ? `<span class="status status--live">${freePhrase(n)}</span>` : '<span class="status status--off">Laisvų patalpų nėra</span>';
   };
-  const unitAlt = (u) => `${u.title}, ${fmtArea(u.area).replace(' ', ' ')}, ${objById(u.object).name}`;
+  const unitAlt = (u) => `${u.title}, ${unitArea(u).replaceAll(' ', ' ')}, ${objById(u.object).name}`;
 
   const unitCardHTML = (u, i = 0) => {
     const o = objById(u.object);
@@ -100,7 +102,7 @@
         </div>
         <div class="unit-card__body">
           <div class="unit-card__top"><span class="tag">${esc(u.type)}</span>${statusHTML(u)}${exampleTag(u)}</div>
-          <h3 class="unit-card__title">${fmtArea(u.area)}${floorLabel(u) ? `<small>${floorLabel(u)}</small>` : ''}</h3>
+          <h3 class="unit-card__title">${unitArea(u)}${floorLabel(u) ? `<small>${floorLabel(u)}</small>` : ''}</h3>
           <span class="unit-card__name">${esc(u.title)}</span>
           <span class="unit-card__addr"><i class="ph ph-map-pin" aria-hidden="true"></i>${esc(o.name)}, ${esc(o.city)}</span>
           <div class="unit-card__foot">
@@ -118,7 +120,7 @@
       <div class="row-card__media${drawing(u.photos[0])}"><img src="${u.photos[0]}" alt="${esc(unitAlt(u))}" loading="lazy" decoding="async"></div>
       <div class="row-card__body">
         <div class="unit-card__top"><span class="tag">${esc(u.type)}</span>${statusHTML(u)}${exampleTag(u)}</div>
-        <h3 class="row-card__title"><strong>${fmtArea(u.area)}</strong><span>${esc(u.title)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''}</span></h3>
+        <h3 class="row-card__title"><strong>${unitArea(u)}</strong><span>${esc(u.title)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''}</span></h3>
         <p class="row-card__sum">${esc(u.summary)}</p>
         <div class="row-card__foot">
           <span class="unit-card__price">${priceHTML(u)}</span>
@@ -189,7 +191,7 @@
     el.innerHTML = `<img class="live-card__img" src="${u.photos[0]}" alt="" loading="eager">
       <span>
         <span class="live-card__label">Naujausia laisva patalpa</span>
-        <span class="live-card__title">${esc(u.title)}, ${fmtArea(u.area)}</span>
+        <span class="live-card__title">${esc(u.title)}, ${unitArea(u)}</span>
         <span class="live-card__meta">${esc(o.name)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''}</span>
         <span class="live-card__row"><span class="live-card__price">${priceHTML(u)}</span><span class="live-card__go" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span></span>
       </span>`;
@@ -616,7 +618,7 @@
       ${o.ev ? `<section class="section--tight">
         <div class="container">
           <div class="ev" data-reveal>
-            <div class="ev__media"><img src="assets/img/elektromobilis.jpg" alt="Elektromobilis įkraunamas prie įkrovimo stotelės" loading="lazy"></div>
+            <div class="ev__media"><img src="${o.evPhoto || 'assets/img/elektromobilis.jpg'}" alt="${o.evPhoto ? 'Elektromobilių įkrovimo stotelė prie ' + o.name + ' pastato' : 'Elektromobilis įkraunamas prie įkrovimo stotelės'}" loading="lazy"></div>
             <div class="ev__body">
               <span class="ev__icon"><i class="ph ph-charging-station"></i></span>
               <h2>Elektromobilių įkrovimas prie pastato</h2>
@@ -627,6 +629,20 @@
                 <div class="mini-fact"><i class="ph ph-lightning" aria-hidden="true"></i><strong>${esc(o.evPower)}</strong><span>galia, EU jungtys</span></div>
               </div>` : ''}
               <p><a class="link-u" href="#kontaktai" data-prefill="Domina elektromobilių įkrovimas prie ${esc(o.name)} pastato.">Paklausti apie įkrovimą <i class="ph ph-arrow-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+      </section>` : ''}
+
+      ${o.perk ? `<section class="section--tight">
+        <div class="container">
+          <div class="ev ev--reverse perk" data-reveal>
+            <div class="ev__media"><img src="${o.perk.photo}" alt="${esc(o.perk.title)}" loading="lazy"></div>
+            <div class="ev__body">
+              <span class="ev__icon"><i class="ph ph-package"></i></span>
+              <h2>${esc(o.perk.title)}</h2>
+              <p>${esc(o.perk.text)}</p>
+              <div class="mini-facts">${o.perk.facts.map((f) => `<div class="mini-fact"><i class="ph ${f.icon}" aria-hidden="true"></i><strong>${esc(f.value)}</strong><span>${esc(f.label)}</span></div>`).join('')}</div>
             </div>
           </div>
         </div>
@@ -653,7 +669,7 @@
     if (!host) return;
     const u = unitById(params.get('id')) || D.units[0];
     const o = objById(u.object);
-    doc.title = `${u.title}, ${fmtArea(u.area).replace(' ', ' ')}, ${o.name} | UAB „Elile“`;
+    doc.title = `${u.title}, ${unitArea(u).replaceAll(' ', ' ')}, ${o.name} | UAB „Elile“`;
     $$('[data-object-select]').forEach((s) => { s.value = o.id; });
     const bar = $('.mobile-bar');
 
@@ -664,7 +680,7 @@
         <div class="notice">
           <span class="empty-card__icon"><i class="ph ph-key"></i></span>
           <h1>Šios patalpos jau išnuomotos</h1>
-          <p class="lead">${esc(u.title)}, ${fmtArea(u.area)}, ${esc(o.name)}. WordPress'e išnuomota patalpa perkeliama į juodraštį, todėl lankytojas pamatytų šį pranešimą arba būtų nukreiptas į laisvų patalpų sąrašą.</p>
+          <p class="lead">${esc(u.title)}, ${unitArea(u)}, ${esc(o.name)}. WordPress'e išnuomota patalpa perkeliama į juodraštį, todėl lankytojas pamatytų šį pranešimą arba būtų nukreiptas į laisvų patalpų sąrašą.</p>
           <div class="obj-hero__actions"><a class="btn btn--green" href="patalpos.html"><span>Laisvos patalpos</span><span class="btn__icon"><i class="ph ph-arrow-right"></i><i class="ph ph-arrow-right"></i></span></a>
           <a class="btn btn--ghost" href="objektas.html?id=${o.id}">Apie pastatą</a></div>
         </div></div></section>`;
@@ -682,12 +698,12 @@
         <div class="container">
           <ol class="crumbs" aria-label="Kelias">
             <li><a href="index.html">Pradžia</a></li><li><a href="patalpos.html">Laisvos patalpos</a></li>
-            <li><a href="objektas.html?id=${o.id}">${esc(o.name)}</a></li><li aria-current="page">${fmtArea(u.area)}</li>
+            <li><a href="objektas.html?id=${o.id}">${esc(o.name)}</a></li><li aria-current="page">${unitArea(u)}</li>
           </ol>
           <div class="unit-head__row">
             <div>
               <div class="unit-head__tags" data-reveal><span class="tag">${esc(u.type)}</span>${statusHTML(u)}${exampleTag(u)}</div>
-              <h1 data-split>${esc(u.title)}, ${fmtArea(u.area)}</h1>
+              <h1 data-split>${esc(u.title)}, ${unitArea(u)}</h1>
               <p class="unit-head__addr" data-reveal style="--d:250ms"><i class="ph ph-map-pin" aria-hidden="true"></i>${esc(o.name)}, ${esc(o.city)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''} <a class="link-u" href="objektas.html?id=${o.id}">Apie pastatą <i class="ph ph-arrow-right"></i></a></p>
             </div>
             <div class="price-block" data-reveal style="--d:300ms">
@@ -740,12 +756,16 @@
           </section>
 
           ${o.ev ? `<div class="ev ev--compact" data-reveal>
-            <div class="ev__media"><img src="assets/img/elektromobilis.jpg" alt="" loading="lazy"></div>
+            <div class="ev__media"><img src="${o.evPhoto || 'assets/img/elektromobilis.jpg'}" alt="" loading="lazy"></div>
             <div class="ev__body">
               <h3>${o.evCount ? 'Elektromobilių įkrovimas prie pastato' : 'Reikia įkrauti elektromobilį?'}</h3>
               <p>${esc(evText(o))}</p>
               <p><a class="link-u" href="#apziura" data-prefill="Domina elektromobilių įkrovimas prie ${esc(o.name)} pastato.">Paklausti apie įkrovimą <i class="ph ph-arrow-right"></i></a></p>
             </div>
+          </div>` : ''}
+          ${o.perk ? `<div class="ev ev--compact perk" data-reveal>
+            <div class="ev__media"><img src="${o.perk.photo}" alt="" loading="lazy"></div>
+            <div class="ev__body"><h3>${esc(o.perk.title)}</h3><p>${esc(o.perk.text)}</p></div>
           </div>` : ''}
         </div>
 
@@ -753,7 +773,7 @@
           <div class="booking__card">
             <div class="booking__price">${u.price ? `<strong>${fmtPrice(u.price)}</strong><small> /m² + PVM</small>${u.noMonthly ? '' : `<span>≈ ${monthly(u)} € per mėnesį + PVM</span>`}` : '<strong>Kaina sutartinė</strong>'}</div>
             <ul class="booking__list">
-              <li><span>Plotas</span><strong>${fmtArea(u.area)}</strong></li>
+              <li><span>Plotas</span><strong>${unitArea(u)}</strong></li>
               ${u.floor ? `<li><span>Aukštas</span><strong>${u.floor}</strong></li>` : ''}
               <li><span>Įsikelti</span><strong>${u.build ? 'Baigus statybas' : u.from === 'Laisva dabar' ? 'Nuo dabar' : esc(u.from)}</strong></li>
             </ul>
@@ -966,6 +986,8 @@
     const mockbar = $('.mockbar');
     if (fab && mockbar && 'IntersectionObserver' in window) {
       new IntersectionObserver(([en]) => fab.classList.toggle('is-visible', !en.isIntersecting)).observe(mockbar);
+    } else if (fab) {
+      fab.classList.add('is-visible');   // viršutinės maketo juostos nebėra — mygtukas rodomas visada
     }
 
     // „Objektai“ išskleidžiamas meniu
@@ -1231,7 +1253,7 @@
         const o = objById(u.object);
         const disabled = u.example && !state.examples;
         return `<div class="demo-row"${disabled ? ' style="opacity:.45"' : ''}>
-          <div class="demo-row__text"><strong>${esc(u.title)}, ${fmtArea(u.area)}</strong><span>${esc(o.name)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''}</span></div>
+          <div class="demo-row__text"><strong>${esc(u.title)}, ${unitArea(u)}</strong><span>${esc(o.name)}${floorLabel(u) ? `, ${floorLabel(u)}` : ''}</span></div>
           <span class="demo-row__badge${u.example ? ' demo-row__badge--ex' : ''}">${u.example ? 'Pavyzdys' : 'Tikra'}</span>
           <label class="switch"><input type="checkbox" data-demo-unit="${u.id}" ${state.rented.has(u.id) ? '' : 'checked'} ${disabled ? 'disabled' : ''} aria-label="${esc(u.title)} ${esc(o.name)}: laisva"><span></span></label>
         </div>`;
@@ -1251,7 +1273,7 @@
       if (t.dataset.demoUnit) {
         const u = unitById(t.dataset.demoUnit);
         if (t.checked) state.rented.delete(u.id); else state.rented.add(u.id);
-        snack(t.checked ? `Paskelbta: ${u.title.toLowerCase()}, ${fmtArea(u.area)}` : `Išnuomota: ${u.title.toLowerCase()}, ${fmtArea(u.area)}. Dingo iš sąrašų ir žemėlapio.`);
+        snack(t.checked ? `Paskelbta: ${u.title.toLowerCase()}, ${unitArea(u)}` : `Išnuomota: ${u.title.toLowerCase()}, ${unitArea(u)}. Dingo iš sąrašų ir žemėlapio.`);
       }
       if ('demoExamples' in t.dataset) { state.examples = t.checked; snack(t.checked ? 'Rodomos ir pavyzdinės patalpos' : 'Rodomi tik tikri duomenys iš elile.lt'); }
       if ('demoTags' in t.dataset) state.exampleTags = t.checked;

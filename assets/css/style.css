@@ -885,6 +885,10 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 .ev__body h2 { font-size: clamp(30px, 3vw, 44px); }
 .ev__body p { max-width: 32em; }
 .ev--compact { grid-template-columns: 180px minmax(0, 1fr); border-radius: var(--r); }
+/* Papildomas blokas (pvz. paštomatas): nuotrauka dešinėje, ikona — Oasis */
+.ev--reverse .ev__media { order: 2; }
+.perk .ev__icon { background: var(--oasis); color: var(--ink); }
+.ev__body .mini-facts { margin-top: 2px; padding-top: 16px; }
 .ev--compact .ev__media { min-height: 100%; }
 .ev--compact .ev__body { padding: 22px 24px; gap: 8px; }
 .ev--compact h3 { font-size: 19px; }
@@ -1151,3 +1155,5 @@ body.has-mobile-bar .snackbar { bottom: 96px; }
 
 /* Patalpos vaizdo įrašas */
 .unit-video video { display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 22px; border-radius: var(--r-lg); background: #0F1B2D; object-fit: cover; box-shadow: var(--shadow); }
+@media (max-width: 767px) { .ev--reverse .ev__media { order: 0; } }
+.unit-main > .ev--compact + .ev--compact { margin-top: 14px; }
